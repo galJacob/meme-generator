@@ -15,15 +15,14 @@ var gMeme = {
   ]
 };
 
-function assignTxt(txtObj) {
-  gMeme.txts = filterTxtsByInput(gMeme.txts, txtObj.areaIdx);
-  gMeme.txts.push(txtObj);
-  //filter txts
+function assignTxt(txtToAssign) {
+  gMeme.txts = filterTxtsByTextareaIdx(gMeme.txts, txtToAssign.textareaIdx);
+  gMeme.txts.push(txtToAssign);
   setCanvas(gMeme.selectedImgId);
-  setTimeout(function() {
-    // renderTxtOnCanvas(gMeme.txts[gMeme.txts.length - 1], gMeme.selectedImgId);
-    renderTxtsOnCanvas(gMeme.txts);
-  }, 1);
+  // setTimeout(function() {
+  //   // renderTxtOnCanvas(gMeme.txts[gMeme.txts.length - 1], gMeme.selectedImgId);
+  //   renderTxtsOnCanvas(gMeme.txts);
+  // }, 1);
   //   renderTxtsOnCanvas(gMeme.txts);
 }
 
@@ -33,8 +32,12 @@ function chooseMeme(id) {
     txts: []
   };
 }
-function filterTxtsByInput(txts, areaIdx) {
+function filterTxtsByTextareaIdx(txts, textareaIdx) {
   return txts.filter(function(txt) {
-    return txt.areaIdx !== areaIdx;
+    return txt.textareaIdx !== textareaIdx;
   });
+}
+
+function getMemeTxts(){
+  return gMeme.txts;
 }

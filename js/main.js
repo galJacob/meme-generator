@@ -34,6 +34,9 @@ function setCanvas(id) {
     // ctx.fillStyle = 'whitesmoke';
     // ctx.fillRect(0, 0, elCanvas.width, elCanvas.height);
     ctx.drawImage(img, 0, 0);
+
+    var txts = getMemeTxts();
+    renderTxtsOnCanvas(txts);
   };
   img.src = `../meme-imgs/${id}.jpg`;
 }
@@ -44,14 +47,7 @@ function renderTxtsOnCanvas(txts) {
     renderTxtOnCanvas(txt);
   });
 }
-// {
-//     line: 100,
-//     str: 'I never eat Falafel',
-//     size: 20,
-//     align: 'left',
-//     color: 'red',
-//     font: 'Impact'
-//   }
+
 function renderTxtOnCanvas(txt) {
   var elCanvas = document.querySelector('#canvas');
   var ctx = elCanvas.getContext('2d');
@@ -81,7 +77,7 @@ function onInpTextarea(elInput) {
   var align = getAlignFromUser();
   var color = getColorFromUser();
   var font = getFontFromUser();
-  var areaIdx = elInput.dataset.idx;
+  var textareaIdx = elInput.dataset.idx;
 
   assignTxt({
     str: str,
@@ -90,7 +86,7 @@ function onInpTextarea(elInput) {
     align: align,
     color: color,
     font: font,
-    areaIdx: areaIdx
+    textareaIdx: textareaIdx
   });
 }
 
