@@ -27,10 +27,9 @@ function createImgs() {
     gImgs.push(createImg(20, 'meme-imgs/20.jpg', ['what if', 'science','morfious']));
     gImgs.push(createImg(21, 'meme-imgs/21.jpg', ['one does not simply', 'lord of the rings']));
     gImgs.push(createImg(22, 'meme-imgs/22.jpg', ['african', 'success']));
-    gImgs.push(createImg(23, 'meme-imgs/23.jpg', ['happy', 'fucks given']));
-    gImgs.push(createImg(24, 'meme-imgs/24.jpg', ['happy', 'fucks given']));
-    gImgs.push(createImg(25, 'meme-imgs/25.jpg', ['happy', 'fucks given']));
-
+    gImgs.push(createImg(23, 'meme-imgs/23.jpg', ['happy', 'funny','star-trek']));
+    gImgs.push(createImg(24, 'meme-imgs/24.jpg', ['racist', 'russian','putin']));
+    gImgs.push(createImg(25, 'meme-imgs/25.jpg', ['fucks i give', 'toy-story']));
 }
 
 //creates a single img 
@@ -44,6 +43,11 @@ function createImg(id, url, keywords) {
 }
 createImgs();
 console.log(gImgs);
+
+function renderImgs(){
+
+}
+
 
 // var trumpMeme = createImg(1, 'meme-imgs/3.jpg', ['angry', 'racist']);
 // console.log(trumpMeme);
