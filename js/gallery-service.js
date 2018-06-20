@@ -1,6 +1,5 @@
 'use strict';
 
-console.log('Gallery Service');
 var gImgs = [];
 
 //creates the gImgs arr, the core "data base" gallery 

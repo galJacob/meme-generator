@@ -1,32 +1,30 @@
 'use strict';
 
-console.log(2);
-console.log('Didi the King!');
 
 function init() {
-    createImgs();
-    renderGallery(gImgs);
-    //   setCanvas();
+  createImgs();
+  renderGallery(gImgs);
+  //   setCanvas();
 }
 
 function renderGallery(imgs) {
-    var renderedGallery = imgs.map(function (img) {
-        var strHtml = `<li onclick = "openModal(${
-            img.id
-            })" class="img-pick fit-background img-${
-            img.id
-            }" style="background-image: url(../meme-imgs/${img.id}.jpg)" </li>`;
-        return strHtml;
-    });
-    var renderedGallery = renderedGallery.join('');
-    var elImgsContainer = document.querySelector('.imgs-container ul');
-    elImgsContainer.innerHTML = renderedGallery;
-    // console.log(elImgsContainer);
+  var renderedGallery = imgs.map(function(img) {
+    var strHtml = `<li onclick = "openModal(${
+      img.id
+    })" class="img-pick fit-background img-${
+      img.id
+    }" style="background-image: url(../meme-imgs/${img.id}.jpg)" </li>`;
+    return strHtml;
+  });
+  var renderedGallery = renderedGallery.join('');
+  var elImgsContainer = document.querySelector('.imgs-container ul');
+  elImgsContainer.innerHTML = renderedGallery;
+  // console.log(elImgsContainer);
 }
 
 function setCanvas(id) {
-    var elCanvas = document.querySelector('#canvas');
-    console.log(elCanvas);
+  var elCanvas = document.querySelector('#canvas');
+  //   console.log(elCanvas);
 
   var img = new Image();
   img.onload = function() {
@@ -41,7 +39,7 @@ function setCanvas(id) {
 }
 
 function renderTxtsOnCanvas(txts) {
-  console.log('txts', txts);
+//   console.log('txts', txts);
   txts.forEach(function(txt) {
     renderTxtOnCanvas(txt);
   });
@@ -75,15 +73,25 @@ function openModal(id) {
 }
 
 function onInpTextarea(elInput) {
-  //   console.log('elInput val', elInput.value);
+    // console.log('elInput', elInput.dataset.idx);
   var str = elInput.value;
   // TODO: more inputs to send to obj
   var line = getLineFromUser();
   var size = getSizeFromUser();
   var align = getAlignFromUser();
   var color = getColorFromUser();
+  var font = getFontFromUser();
+  var areaIdx = elInput.dataset.idx;
 
-  assignTxt({ str: str, line: line, size: size, align: align, color: color });
+  assignTxt({
+    str: str,
+    line: line,
+    size: size,
+    align: align,
+    color: color,
+    font: font,
+    areaIdx: areaIdx
+  });
 }
 
 function getLineFromUser() {
@@ -98,12 +106,15 @@ function getAlignFromUser() {
 function getColorFromUser() {
   return 'red';
 }
+function getFontFromUser() {
+  return 'Impact';
+}
 
 //gets the input from the user and showing the pictures that match the typed letters
 function renderImgsByInput(elInput) {
-    var input = elInput.value;
-    var sortedImgs =  sortImgsByInput(input);
-    renderGallery(sortedImgs);
+  var input = elInput.value;
+  var sortedImgs = sortImgsByInput(input);
+  renderGallery(sortedImgs);
 }
 // gal
 

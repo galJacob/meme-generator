@@ -1,6 +1,5 @@
 'use strict';
 
-console.log("Editor's Service");
 
 var gMeme = {
   selectedImgId: 5,
@@ -17,8 +16,15 @@ var gMeme = {
 };
 
 function assignTxt(txtObj) {
+  gMeme.txts = filterTxtsByInput(gMeme.txts, txtObj.areaIdx);
   gMeme.txts.push(txtObj);
-  renderTxtsOnCanvas(gMeme.txts);
+  //filter txts
+  setCanvas(gMeme.selectedImgId);
+  setTimeout(function() {
+    // renderTxtOnCanvas(gMeme.txts[gMeme.txts.length - 1], gMeme.selectedImgId);
+    renderTxtsOnCanvas(gMeme.txts);
+  }, 1);
+  //   renderTxtsOnCanvas(gMeme.txts);
 }
 
 function chooseMeme(id) {
@@ -26,4 +32,9 @@ function chooseMeme(id) {
     selectedImgId: id,
     txts: []
   };
+}
+function filterTxtsByInput(txts, areaIdx) {
+  return txts.filter(function(txt) {
+    return txt.areaIdx !== areaIdx;
+  });
 }
