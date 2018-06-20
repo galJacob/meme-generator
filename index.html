@@ -9,7 +9,7 @@
 </head>
 
 <body onload="init()">
-        <!-- Gal -->
+    <!-- Gal -->
     <h1>meme Generator!</h1>
     <div class="input-container">
         <button class="btn" onclick="submit-link()"></button>
@@ -32,8 +32,7 @@
             <button class="return-btn btn">&times;</button>
             <canvas id="canvas" class="img-canvas">
             </canvas>
-            <textarea class="textarea" placeholder="Enter Text"> 
-            </textarea>
+            <textarea class="textarea" oninput="onInpTextarea(this)" placeholder="Enter Text" value=""></textarea>
             <!--Falafel style for textarea: "overflow: hidden;
                 word-wrap: break-word;
                 resize: horizontal;

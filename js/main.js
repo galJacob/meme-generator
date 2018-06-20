@@ -37,26 +37,73 @@ function setCanvas(id) {
     // ctx.fillStyle = 'whitesmoke';
     // ctx.fillRect(0, 0, elCanvas.width, elCanvas.height);
     ctx.drawImage(img, 0, 0);
-    renderTxtOnCanvas('Hello World');
   };
   img.src = `../meme-imgs/${id}.jpg`;
 }
 
-function renderTxtOnCanvas(txt, line = 100) {
+function renderTxtsOnCanvas(txts) {
+  console.log('txts', txts);
+  txts.forEach(function(txt) {
+    renderTxtOnCanvas(txt);
+  });
+}
+// {
+//     line: 100,
+//     str: 'I never eat Falafel',
+//     size: 20,
+//     align: 'left',
+//     color: 'red',
+//     font: 'Impact'
+//   }
+function renderTxtOnCanvas(txt) {
   var elCanvas = document.querySelector('#canvas');
   var ctx = elCanvas.getContext('2d');
-  ctx.font = '30px Arial';
-  ctx.fillStyle = 'black';
-  ctx.fillText(txt, 45, line);
+  //   var middle = elCanvas.width*0.5 - size*txt.length*0.5;
+  ctx.font = `${txt.size}px ${txt.font}`;
+  ctx.fillStyle = txt.color;
+
+  ctx.textAlign = txt.align;
+  ctx.fillText(txt.str, elCanvas.width * 0.5, txt.line);
+  ctx.lineWidth = txt.size / 20;
+  ctx.strokeText(txt.str, elCanvas.width * 0.5, txt.line);
 }
 
 function openModal(id) {
   var elModal = document.querySelector('.modal');
   setCanvas(id);
   elModal.style.display = 'flex';
+  chooseMeme(id);
+}
+
+function onInpTextarea(elInput) {
+  //   console.log('elInput val', elInput.value);
+  var str = elInput.value;
+  // TODO: more inputs to send to obj
+  var line = getLineFromUser();
+  var size = getSizeFromUser();
+  var align = getAlignFromUser();
+  var color = getColorFromUser();
+
+  assignTxt({ str: str, line: line, size: size, align: align, color: color });
+}
+
+function getLineFromUser() {
+  return 100;
+}
+function getSizeFromUser() {
+  return 56;
+}
+function getAlignFromUser() {
+  return 'center';
+}
+function getColorFromUser() {
+  return 'red';
 }
 
 // gal
 
-
 // gal
+
+// Didi
+
+// !Didi
