@@ -6,13 +6,24 @@ var gMeme = {
   selectedImgId: 5,
   txts: [
     {
-      line: 'I never eat Falafel',
+      line: 100,
+      str: 'I never eat Falafel',
       size: 20,
       align: 'left',
-      color: 'red'
+      color: 'red',
+      font: 'Impact'
     }
   ]
 };
 
+function assignTxt(txtObj) {
+  gMeme.txts.push(txtObj);
+  renderTxtsOnCanvas(gMeme.txts);
+}
 
-
+function chooseMeme(id) {
+  gMeme = {
+    selectedImgId: id,
+    txts: []
+  };
+}
