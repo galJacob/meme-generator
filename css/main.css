@@ -57,5 +57,9 @@ li {
 .hide {
   display: none;
 }
+.btn{
+    width: 50px;
+    height: 30px;
+}
 
 /* !/Helper */
