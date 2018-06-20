@@ -4,20 +4,16 @@ body{
 
 /* gal */
 .imgs-container{
-    background-color: blue;
-    width: 60%;
+    /* background-color: blue; */
+    width: 92%;
+    display: flex;
 }
 .clean-list {
     list-style-type: none;
     /* margin: 0; */
     padding: 0;
 }
-ul.container{
-width: 100%;
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;
-}
+ul.container{width: 100%;display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-between;}
 
 li{
     display: block;
