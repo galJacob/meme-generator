@@ -3,9 +3,33 @@ body{
 }
 
 /* gal */
+.imgs-container{
+    background-color: blue;
+    width: 60%;
+}
+.clean-list {
+    list-style-type: none;
+    /* margin: 0; */
+    padding: 0;
+}
+ul.container{
+width: 100%;
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+}
 
+li{
+    display: block;
+    width: 200px;
+    height: 100px;
+}
 
-
+.fit-background{
+    background-repeat: no-repeat;
+     background-size: cover;
+   background-position: center center;
+ }
 
 /* gal */
 

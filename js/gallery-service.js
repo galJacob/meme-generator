@@ -44,9 +44,6 @@ function createImg(id, url, keywords) {
 createImgs();
 console.log(gImgs);
 
-function renderImgs(){
-
-}
 
 
 // var trumpMeme = createImg(1, 'meme-imgs/3.jpg', ['angry', 'racist']);
