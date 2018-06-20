@@ -55,3 +55,8 @@ function openModal(id) {
   setCanvas(id);
   elModal.style.display = 'flex';
 }
+
+// gal
+
+
+// gal
