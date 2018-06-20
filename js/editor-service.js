@@ -22,20 +22,21 @@ function setCanvas() {
 
   var img = new Image();
   img.onload = function() {
-    elCanvas.width = img.width + 20;
-    elCanvas.height = img.height + 20;
+    elCanvas.width = img.width;
+    elCanvas.height = img.height ;
     var ctx = elCanvas.getContext('2d');
-    ctx.fillStyle = 'whitesmoke';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, 10, 10);
-    handleText('Hello World', ctx);
-    //Function that pushes fake txt
+    // ctx.fillStyle = 'whitesmoke';
+    // ctx.fillRect(0, 0, elCanvas.width, elCanvas.height);
+    ctx.drawImage(img, 0, 0);
+    renderTxtOnCanvas('Hello World');
   };
   img.src = `../meme-imgs/${gMeme.selectedImgId}.jpg`;
 }
 
-function handleText(txt, ctx, line = 100) {
+function renderTxtOnCanvas(txt, line = 100) {
+  var elCanvas = document.querySelector('#canvas');
+  var ctx = elCanvas.getContext('2d');
   ctx.font = '30px Arial';
-  ctx.fillStyle= 'black'
+  ctx.fillStyle = 'black';
   ctx.fillText(txt, 45, line);
 }
