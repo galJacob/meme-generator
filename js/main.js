@@ -53,5 +53,5 @@ function renderTxtOnCanvas(txt, line = 100) {
 function openModal(id) {
   var elModal = document.querySelector('.modal');
   setCanvas(id);
-  elModal.style.display = 'block';
+  elModal.style.display = 'flex';
 }
