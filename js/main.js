@@ -81,43 +81,6 @@ function renderTxtOnCanvas(txt) {
 
 
 function onInpTextarea(elInput) {
-<<<<<<< HEAD
-    // console.log('elInput', elInput.dataset.idx);
-    var str = elInput.value;
-    // TODO: more inputs to send to obj
-    var line = getLineFromUser();
-    var size = getSizeFromUser();
-    var align = getAlignFromUser();
-    var color = getColorFromUser();
-    var font = getFontFromUser();
-    var textareaIdx = elInput.dataset.idx;
-
-    assignTxt({
-        str: str,
-        line: line,
-        size: size,
-        align: align,
-        color: color,
-        font: font,
-        textareaIdx: textareaIdx
-    });
-}
-
-function getLineFromUser() {
-    return 100;
-}
-function getSizeFromUser() {
-    return 56;
-}
-function getAlignFromUser() {
-    return 'center';
-}
-function getColorFromUser() {
-    return 'red';
-}
-function getFontFromUser() {
-    return 'Impact';
-=======
   // console.log('elInput', elInput.dataset.idx);
   var str = elInput.value;
   // TODO: more inputs to send to obj
@@ -155,7 +118,6 @@ function getColorFromUser(color = 'red') {
 }
 function getFontFromUser(font = 'Impact') {
   return font;
->>>>>>> 97eddad97a1f48f0a7bb07505289fcbbafe1155e
 }
 
 //gets the input from the user and showing the pictures that match the typed letters
