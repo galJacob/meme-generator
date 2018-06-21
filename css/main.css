@@ -28,6 +28,13 @@ body {
   list-style-type: none;
   padding: 0;
 }
+.popular-imgs-container{
+    background-color:blue;
+}
+header a{
+    text-decoration: none;
+    color: black;
+}
 .input-btn {
   width: 20px;
   height: 10px;
@@ -40,7 +47,7 @@ ul.container {
   justify-content: space-between;
 }
 
-li {
+.imgs-container li {
   margin-top: 10px;
   display: block;
   width: 200px;

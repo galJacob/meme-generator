@@ -1,6 +1,7 @@
 'use strict';
 
 var gImgs = [];
+var gPopularImgsMap = {};
 
 //creates the gImgs arr, the core "data base" gallery 
 function createImgs() {
@@ -43,21 +44,27 @@ function createImg(id, url, keywords) {
 
 //function that sorts imgs by their input and returns the sorted imgs arr
 function sortImgsByInput(input) {
-    if (input === '') {
+    if (input === '')
         return gImgs;
-    }
     var imgsByInput = gImgs.filter(function (img) {
         var keywords = img.keywords;
         var matchedWord = keywords.find(function (word) {
-            var slicedWord;
-            for (var i = 0; i < input.length; i++) {
-                slicedWord = word.substring(0, i + 1);
-            }
+            var slicedWord = sliceFromStrByIdx(input.length, word);
             return slicedWord === input;
         })
         return matchedWord;
     })
     return imgsByInput;
+}
+
+//creates the map with fake data
+function createPopularImgsMap() {
+gPopularImgsMap = {
+    'trump':3,
+    'happy': 4,
+    'racist': 1
+};
+
 }
 
 
