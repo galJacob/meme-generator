@@ -3,10 +3,10 @@
 
 function init() {
   createImgs();
-  renderGallery(gImgs);
+  renderImgs(gImgs);
 }
 
-function renderGallery(imgs) {
+function renderImgs(imgs) {
   var strHtmls = imgs.map(function (img) {
     var strHtml = `<li onclick = "openModal(${
       img.id
@@ -107,7 +107,7 @@ function getFontFromUser() {
 //gets the input from the user and showing the pictures that match the typed letters
 function renderImgsByInput(elInput) {
   var sortedImgs = sortImgsByInput(elInput.value);
-  renderGallery(sortedImgs);
+  renderImgs(sortedImgs);
 }
 // gal
 
