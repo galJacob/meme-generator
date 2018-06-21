@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: aqua;
+  background-color: rgb(99, 87, 87);
   margin: 0;
   font-family: 'Arvo', serif;
 }
@@ -144,19 +144,44 @@ ul.container {
   border: 1px solid white;
 }
 .img-canvas{
-  max-height: 70%;
   max-width: 100%;
+  width: 500px;
+  height: auto;
   cursor: crosshair;
   /* TODO: Respons. cancel the mrgn */
   margin: 40px auto 20px auto;
 }
+.add-line-container{
+  font-size: 1.1rem;
+}
+
+/* @media (max-width: 1000px){
+.modal-content {
+  flex-wrap: wrap;
+}
+
+.img-canvas{
+  width:auto;
+  height: 80;
+}
+
+.add-line-container{
+  font-size: 0.9rem;
+}
+} */
+/* @media (max-width: 770px){
+
+
+  .img-canvas{
+    width: 100%;
+    height: auto;
+  }
+} */
 .textareas-container {
   max-width: 100%;
   margin: 20px auto;
 }
-.add-line-container{
-  font-size: 1.1rem;
-}
+
 
 .add-line-container textarea {
   background: #221616e3;
