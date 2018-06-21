@@ -253,8 +253,9 @@ ul.container {
 .browseTxts-container span{
   color: blue;
   margin: 0 25px;
-  
 }
+
+/* TODO: make the browseBar flex wrap on mobile; */
 
 /* didi */
 
