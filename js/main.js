@@ -4,30 +4,34 @@
 function init() {
   createImgs();
   renderGallery(gImgs);
-  //   setCanvas();
 }
 
 function renderGallery(imgs) {
-  var renderedGallery = imgs.map(function(img) {
+  var strHtmls = imgs.map(function (img) {
     var strHtml = `<li onclick = "openModal(${
       img.id
-    })" class="img-pick fit-background img-${
+      })" class="img-pick fit-background img-${
       img.id
-    }" style="background-image: url(../meme-imgs/${img.id}.jpg)" </li>`;
+      }" style="background-image: url(../meme-imgs/${img.id}.jpg)" </li>`;
     return strHtml;
   });
-  var renderedGallery = renderedGallery.join('');
+  var strHtml = strHtmls.join('');
   var elImgsContainer = document.querySelector('.imgs-container ul');
-  elImgsContainer.innerHTML = renderedGallery;
-  // console.log(elImgsContainer);
+  elImgsContainer.innerHTML = strHtml;
+}
+
+function openModal(id) {
+  var elModal = document.querySelector('#editor-modal');
+  setCanvas(id);
+  elModal.style.display = 'block';
+  chooseMeme(id);
 }
 
 function setCanvas(id) {
-  var elCanvas = document.querySelector('#canvas');
-  //   console.log(elCanvas);
+  var elCanvas = document.querySelector('#meme-canvas');
 
   var img = new Image();
-  img.onload = function() {
+  img.onload = function () {
     elCanvas.width = img.width;
     elCanvas.height = img.height;
     var ctx = elCanvas.getContext('2d');
@@ -42,14 +46,13 @@ function setCanvas(id) {
 }
 
 function renderTxtsOnCanvas(txts) {
-//   console.log('txts', txts);
-  txts.forEach(function(txt) {
+  txts.forEach(function (txt) {
     renderTxtOnCanvas(txt);
   });
 }
 
 function renderTxtOnCanvas(txt) {
-  var elCanvas = document.querySelector('#canvas');
+  var elCanvas = document.querySelector('#meme-canvas');
   var ctx = elCanvas.getContext('2d');
   //   var middle = elCanvas.width*0.5 - size*txt.length*0.5;
   ctx.font = `${txt.size}px ${txt.font}`;
@@ -61,15 +64,10 @@ function renderTxtOnCanvas(txt) {
   ctx.strokeText(txt.str, elCanvas.width * 0.5, txt.line);
 }
 
-function openModal(id) {
-  var elModal = document.querySelector('.modal');
-  setCanvas(id);
-  elModal.style.display = 'block';
-  chooseMeme(id);
-}
+
 
 function onInpTextarea(elInput) {
-    // console.log('elInput', elInput.dataset.idx);
+  // console.log('elInput', elInput.dataset.idx);
   var str = elInput.value;
   // TODO: more inputs to send to obj
   var line = getLineFromUser();
@@ -108,8 +106,7 @@ function getFontFromUser() {
 
 //gets the input from the user and showing the pictures that match the typed letters
 function renderImgsByInput(elInput) {
-  var input = elInput.value;
-  var sortedImgs = sortImgsByInput(input);
+  var sortedImgs = sortImgsByInput(elInput.value);
   renderGallery(sortedImgs);
 }
 // gal
