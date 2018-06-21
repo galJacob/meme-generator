@@ -64,7 +64,7 @@ function renderTxtOnCanvas(txt) {
 function openModal(id) {
   var elModal = document.querySelector('.modal');
   setCanvas(id);
-  elModal.style.display = 'flex';
+  elModal.style.display = 'block';
   chooseMeme(id);
 }
 
