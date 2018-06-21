@@ -112,3 +112,7 @@ function getlastIdxTxt(idx) {
       };
   }
 }
+
+function getCurrId(){
+  return gMeme.selectedImgId;
+}

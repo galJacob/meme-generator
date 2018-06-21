@@ -26,21 +26,25 @@ function renderImgs(imgs) {
 }
 
 function openModal(id) {
-    var elModal = document.querySelector('#editor-modal');
+  var elModal = document.querySelector('#editor-modal');
 
-    //clean Modal Textareas by NodeList
-    var elInputs = document.querySelectorAll('.add-line-container textarea');
-    for (var i = 0; i < elInputs.length; i++) {
-        elInputs[i].value = '';
-    }
-    setCanvas(id);
-    elModal.classList.toggle('hide');
-    chooseMeme(id);
+  //clean Modal Textareas by NodeList
+  var elInputs = document.querySelectorAll('.add-line-container textarea');
+  for (var i = 0; i < elInputs.length; i++) {
+    elInputs[i].value = '';
+  }
+  setCanvas(id);
+  elModal.classList.toggle('hide');
+  chooseMeme(id);
+  var elBody = document.querySelector('body');
+  elBody.style.overflow = 'hidden';
 }
 
 function closeModal() {
-    var elModal = document.querySelector('#editor-modal');
-    elModal.classList.toggle('hide');
+  var elModal = document.querySelector('#editor-modal');
+  elModal.classList.toggle('hide');
+  var elBody = document.querySelector('body');
+  elBody.style.overflow = 'hidden';
 }
 
 function setCanvas(id) {
@@ -137,7 +141,7 @@ function onPopularImgsMapInput(elInput) {
 }
 
 function showFontMenu(id) {
-    document.querySelector(`.font-pick${id}`).classList.toggle('hide');
+  document.querySelector(`.font-pick${id}`).classList.toggle('hide');
 }
 
 function onUpdateTxtBy(param, id, type) {
@@ -166,7 +170,51 @@ function toggleMenu() {
 
 
 function handleKey(ev) {
-    console.log('ev', ev)
-    var offsetY = ev.offsetY;
-    // updateLineAtCurrTxt();
+  console.log('ev', ev)
+  var offsetY = ev.offsetY;
+  // updateLineAtCurrTxt();
+}
+
+function renderTextarea(id, line) {
+  var strHtml = `<div class="add-line-container flex column" id="add-line${id}">
+  <textarea data-idx="${id}" id="textarea${id}" oninput="onInpTextarea(this)" placeholder="Enter Text" value=""></textarea>
+  <div class="ctrl-btns-container flex">
+      <button class="ctrl-btn btn ctrl-color">
+          <input type="color" value="#ffffff" id="textarea-color${id}" oninput="onUpdateTxtBy('color', ${id}, this.value)">
+      </button>
+      <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', ${id})">+</button>
+      <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', ${id})">-</button>
+      <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(${id})">A</button>
+      <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', ${id})">▲</button>
+      <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', ${id})">▼</button>
+
+      <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', ${id})">B</button>
+      <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', ${id})">L</button>
+      <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${id})">C</button>
+      <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${id})">R</button>
+  </div>
+  <div class="font-pick font-pick${id} hide">
+      <label>Choose Font:</label>
+      <ul class="clean-list">
+          <li onclick="onUpdateTxtBy('font', ${id} ,'Impact')">Impact</li>
+          <li onclick="onUpdateTxtBy('font', ${id} ,'Arial')">Arial</li>
+          <li onclick="onUpdateTxtBy('font', ${id} ,'Times New Roman')">Times New Roman</li>
+      </ul>
+  </div>
+</div> 
+  `;
+
+  var elTextareaContainer = document.querySelector('.add-line-container');
+  elTextareaContainer.innerHTML = strHtml;
+  renderCurrId(id);
+}
+var gId=1;
+function onChangeTxtId(diff) {
+  var id = gId + diff;
+  renderTextarea(id);
+}
+
+function renderCurrId(id){
+  var elP = document.querySelector('.show-curr-id');
+  elP.innerText = id;
 }
