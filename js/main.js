@@ -17,7 +17,7 @@ function renderImgs(imgs) {
             img.id
             })" class="img-pick fit-background img-${
             img.id
-            }" style="background-image: url(../meme-imgs/${img.id}.jpg)" </li>`;
+            }" style="background-image: url('meme-imgs/${img.id}.jpg')" </li>`;
         return strHtml;
     });
     var strHtml = strHtmls.join('');
