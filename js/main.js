@@ -62,7 +62,7 @@ function setCanvas(id) {
         var txts = getMemeTxts();
         renderTxtsOnCanvas(txts);
     };
-    img.src = `../meme-imgs/${id}.jpg`;
+    img.src = `meme-imgs/${id}.jpg`;
 }
 
 function renderTxtsOnCanvas(txts) {
