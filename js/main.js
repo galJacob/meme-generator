@@ -23,8 +23,13 @@ function renderGallery(imgs) {
 function openModal(id) {
   var elModal = document.querySelector('#editor-modal');
   setCanvas(id);
-  elModal.style.display = 'block';
+  elModal.classList.toggle('hide');
   chooseMeme(id);
+}
+
+function closeModal(){
+  var elModal = document.querySelector('#editor-modal');
+  elModal.classList.toggle('hide');
 }
 
 function setCanvas(id) {

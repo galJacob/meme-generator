@@ -44,13 +44,24 @@
 
             <!-- TODO(Didi): add wrap for mobile to make the text editor on column -->
 
-            <button class="return-btn btn">&times;</button>
+            <button class="return-btn btn" onclick="closeModal()">&times;</button>
             <canvas id="meme-canvas" class="img-canvas">
             </canvas>
 
             <div class="textareas-container flex column">
-                <div class="add-line-container" id="add-line1">
+                <div class="add-line-container flex column" id="add-line1">
                     <textarea data-idx="1" oninput="onInpTextarea(this)" placeholder="Enter Text" value=""></textarea>
+                    <div class="ctrl-btns-container flex">
+                        <button class="ctrl-btn btn ctrl-color" onclick="renderMenu(this)">🔵</button>
+                        <button class="ctrl-btn btn ctrl-font-inc">+</button>
+                        <button class="ctrl-btn btn ctrl-font-dec">-</button>
+                        <button class="ctrl-btn btn ctrl-align">A</button>
+                        <button class="ctrl-btn btn ctrl-bold">B</button>
+                    </div>
+                    <ul class="nav-ctrl-btn clean-list">
+                        <li>Moshe</li>
+                        <li>Omer</li>
+                    </ul>
                 </div>
                 <div class="add-line-container" id="add-line2">
                     <textarea data-idx="2" oninput="onInpTextarea(this)" placeholder="Enter Text" value=""></textarea>

@@ -76,6 +76,7 @@ li {
 }
 .img-canvas{
   max-height: 70%;
+  cursor: crosshair;
 }
 /* didi */
 
@@ -87,6 +88,7 @@ li {
 .btn{
     width: 50px;
     height: 20px;
+    cursor: pointer;
 }
 .center-items {
   justify-content: center;
