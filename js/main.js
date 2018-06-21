@@ -118,9 +118,9 @@ function renderImgsByInput(elInput) {
 
 function displayPopularImgsMap(popularImgsMap) {
   var elPopularContainer = document.querySelector('.popular-imgs-container');
-  var strHtml = '';
+  var strHtml = 'popular searches:';
   for (var prop in popularImgsMap)
-    strHtml += `<a style="font-size:${15 * popularImgsMap[prop]}px;"href="">${prop} </a> `;
+    strHtml += `<a style="font-size:${15 * popularImgsMap[prop]}px;"href=""> ${prop} </a> `;
 
   elPopularContainer.innerHTML = strHtml;
   // console.log(gPopularImgsMap);
@@ -151,9 +151,9 @@ function onUpdateTxtBy(param, id, type) {
 // gal
 function toggleMenu() {
     var elNav = document.querySelector('nav');
-    var elMenuArrow = document.querySelector('.menu-arrow');
+    var elMenuArrow = document.querySelector('.location-menu-arrow');
     elNav.classList.toggle('closed-nav');
-    elMenuArrow.classList.toggle('closed-menu-arrow');
+    elMenuArrow.classList.toggle('closed-location-menu-arrow');
     console.log(elNav);
 }
 // gal

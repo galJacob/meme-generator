@@ -85,8 +85,8 @@ function addpopularKeyword(keyword) {
     }
 }
 function checkMaxLimitFontSize(keyword) {
-    if (gPopularImgsMap[keyword] >= 8)
-        gPopularImgsMap[keyword] = 8;
+    if (gPopularImgsMap[keyword] >= 7)
+        gPopularImgsMap[keyword] = 7;
 }
 
 
