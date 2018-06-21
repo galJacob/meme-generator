@@ -27,7 +27,7 @@ function openModal(id) {
   chooseMeme(id);
 }
 
-function closeModal(){
+function closeModal() {
   var elModal = document.querySelector('#editor-modal');
   elModal.classList.toggle('hide');
 }
@@ -75,12 +75,14 @@ function onInpTextarea(elInput) {
   // console.log('elInput', elInput.dataset.idx);
   var str = elInput.value;
   // TODO: more inputs to send to obj
-  var line = getLineFromUser();
-  var size = getSizeFromUser();
-  var align = getAlignFromUser();
-  var color = getColorFromUser();
-  var font = getFontFromUser();
-  var textareaIdx = elInput.dataset.idx;
+  var textareaIdx = +elInput.dataset.idx;
+  // txtBeenBefore(elInput);
+  var lastIdxTxt = getlastIdxTxt(textareaIdx);
+  var line = lastIdxTxt.line;
+  var size = lastIdxTxt.size;
+  var align = lastIdxTxt.align;
+  var color = document.querySelector(`#textarea-color${textareaIdx}`).value;
+  var font = lastIdxTxt.font;
 
   assignTxt({
     str: str,
@@ -93,20 +95,20 @@ function onInpTextarea(elInput) {
   });
 }
 
-function getLineFromUser() {
-  return 100;
+function getLineFromUser(line = 100) {
+  return line;
 }
-function getSizeFromUser() {
-  return 56;
+function getSizeFromUser(size = 56) {
+  return size;
 }
-function getAlignFromUser() {
-  return 'center';
+function getAlignFromUser(align = 'center') {
+  return align;
 }
-function getColorFromUser() {
-  return 'red';
+function getColorFromUser(color = 'red') {
+  return color;
 }
-function getFontFromUser() {
-  return 'Impact';
+function getFontFromUser(font = 'Impact') {
+  return font;
 }
 
 //gets the input from the user and showing the pictures that match the typed letters
@@ -114,6 +116,22 @@ function renderImgsByInput(elInput) {
   var sortedImgs = sortImgsByInput(elInput.value);
   renderImgs(sortedImgs);
 }
+
+function showFontMenu(id) {
+  document.querySelector(`.font-pick${id}`).classList.toggle('hide');
+}
+
+function onUpdateTxtBy(param, id, type) {
+  var elTextarea = document.querySelector(`#textarea${id}`);
+  console.log('elTextArea.value', elTextarea.value);
+  if (!elTextarea.value) return;
+  updateTxtAt(param, id, type);
+}
+
+// function renderColorCtrlMenu() {
+//   var elMenu = document.querySelector('.ctrl-btn-menu');
+//   var strHtmls = 
+// }
 // gal
 
 // gal
