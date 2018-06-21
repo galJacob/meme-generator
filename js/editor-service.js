@@ -5,12 +5,13 @@ var gMeme = {
   selectedImgId: 5,
   txts: [
     {
-      line: 100,
       str: 'I never eat Falafel',
+      line: 100,
       size: 20,
       align: 'left',
       color: 'red',
-      font: 'Impact'
+      font: 'Impact',
+      textareaIdx: 1
     }
   ]
 };
@@ -33,11 +34,11 @@ function chooseMeme(id) {
   };
 }
 function filterTxtsByTextareaIdx(txts, textareaIdx) {
-  return txts.filter(function(txt) {
+  return txts.filter(function (txt) {
     return txt.textareaIdx !== textareaIdx;
   });
 }
 
-function getMemeTxts(){
+function getMemeTxts() {
   return gMeme.txts;
 }
