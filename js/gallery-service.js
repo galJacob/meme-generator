@@ -1,8 +1,5 @@
 'use strict';
 
-var gImgs = [];
-var gPopularImgsMap = {};
-
 //creates the gImgs arr, the core "data base" gallery 
 function createImgs() {
     gImgs.push(createImg(1, 'meme-imgs/1.jpg', ['happy', 'fucks given']));
@@ -57,16 +54,40 @@ function sortImgsByInput(input) {
     return imgsByInput;
 }
 
-//creates the map with fake data
 function createPopularImgsMap() {
-gPopularImgsMap = {
-    'trump':3,
-    'happy': 4,
-    'racist': 1
-};
-
+    var popularImgsMap = loadPopularMapFromStorage();
+    if (popularImgsMap) return popularImgsMap;
+    popularImgsMap = {};
+    popularImgsMap = {
+        'trump': 4,
+        'happy': 3,
+        'racist': 1
+    };
+    savePopularMapToStorage(popularImgsMap);
+    return popularImgsMap;
+}
+function getImgKeywordByinput(input) {
+    for (var i = 0; i < gImgs.length; i++) {
+        var keywords = gImgs[i].keywords;
+        var matchedKeyword = keywords.find(function (keyword) {
+            return keyword === input;
+        })
+        if (matchedKeyword) break;
+    }
+    return matchedKeyword;
 }
 
+function addpopularKeyword(keyword) {
+    if (keyword) {
+        gPopularImgsMap[keyword] ? gPopularImgsMap[keyword]++ : gPopularImgsMap[keyword] = 1;
+        checkMaxLimitFontSize(keyword);
+        savePopularMapToStorage(gPopularImgsMap);
+    }
+}
+function checkMaxLimitFontSize(keyword) {
+    if (gPopularImgsMap[keyword] >= 8)
+        gPopularImgsMap[keyword] = 8;
+}
 
 
 

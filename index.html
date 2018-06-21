@@ -9,19 +9,23 @@
 </head>
 
 <body onload="init()">
-    <header class="container">
-        <div class="popular-imgs-container">
-            <h1><a onclick="putPopularWordInInput()" href="">asd</a></h1>
-            <h2><a onclick="putPopularWordInInput()" href="">asd</a></h2>
-            <h3><a onclick="putPopularWordInInput()" href="">asd</a></h3>
-        </div>
+    <h1>meme Generator!</h1>
+    <header class="flex">
+        <nav class="flex">
+            <div class="load-inputs-container flex">load-inputs-container</div>
+            <a href="#editor-modal">editor modal</a>
+            <a href="#get-in-touch">get in touch</a>
+            <a href="#about">about</a>
+            <div class="popular-imgs-container flex"></div>
+
+        </nav>
+
     </header>
     <main class="container">
         <!-- Gal -->
-        <h1>meme Generator!</h1>
         <div class="input-container">
             <button class="btn" onclick="submit-link()"></button>
-            <input type="text" list="words" value="" oninput="renderImgsByInput(this)">
+            <input type="text" list="words" value="" oninput="renderImgsByInput(this),onPopularImgsMapInput(this)">
             <datalist id="words">
                 <option value="trump">
                     <option value="success">
@@ -35,7 +39,8 @@
         </div>
     </main>
     <footer class="container">
-        Footer...
+        <div id="get-in-touch">asdsa</div>
+        <div id="about">dsadassa</div>
     </footer>
 
 

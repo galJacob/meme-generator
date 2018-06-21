@@ -1,8 +1,6 @@
 'use strict';
 console.log('Utills Service');
 
-var MAP_KEY = 'popular imgs';
-
 function sliceFromStrByIdx(idx, word) {
     for (var i = 0; i < idx; i++) {
         var slicedWord = word.substring(0, i + 1);
@@ -10,6 +8,12 @@ function sliceFromStrByIdx(idx, word) {
     return slicedWord;
 }
 
-function savePopularMapToStorage(){
-
+function savePopularMapToStorage(popularImgsMap) {
+    localStorage.setItem(MAP_KEY, JSON.stringify(popularImgsMap));
 }
+function loadPopularMapFromStorage() {
+    var popularImgsMap;
+  popularImgsMap = JSON.parse(localStorage.getItem(MAP_KEY));
+  return popularImgsMap;
+}
+
