@@ -43,9 +43,8 @@ function createImg(id, url, keywords) {
 
 //function that sorts imgs by their input and returns the sorted imgs arr
 function sortImgsByInput(input) {
-    if (input === '') {
+    if (input === '') 
         return gImgs;
-    }
     var imgsByInput = gImgs.filter(function (img) {
         var keywords = img.keywords;
         var matchedWord = keywords.find(function (word) {
