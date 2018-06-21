@@ -11,6 +11,7 @@ var gMeme = {
       align: 'left',
       color: 'red',
       font: 'Impact',
+      bold: true,
       textareaIdx: 1
     }
   ]
@@ -18,13 +19,8 @@ var gMeme = {
 
 function assignTxt(txtToAssign) {
   gMeme.txts = filterTxtsByTextareaIdx(gMeme.txts, txtToAssign.textareaIdx);
-  gMeme.txts.push(txtToAssign);
+  gMeme.txts.unshift(txtToAssign);
   setCanvas(gMeme.selectedImgId);
-  // setTimeout(function() {
-  //   // renderTxtOnCanvas(gMeme.txts[gMeme.txts.length - 1], gMeme.selectedImgId);
-  //   renderTxtsOnCanvas(gMeme.txts);
-  // }, 1);
-  //   renderTxtsOnCanvas(gMeme.txts);
 }
 
 function chooseMeme(id) {
@@ -41,4 +37,75 @@ function filterTxtsByTextareaIdx(txts, textareaIdx) {
 
 function getMemeTxts() {
   return gMeme.txts;
+}
+
+function updateFontSizeTxt(txt, diff) {
+  txt.size += diff;
+}
+
+function updateTxtAt(param, id, type) {
+  var currTxt = gMeme.txts.find(function (txt) {
+    return txt.textareaIdx === id;
+  });
+  if (!currTxt) return;
+
+  switch (param) {
+
+    case 'color':
+      currTxt.color = type;
+      break;
+
+    case 'font':
+      currTxt.font = type;
+      break;
+
+    case 'fontInc':
+      currTxt.size += 5;
+      break;
+
+    case 'fontDec':
+      currTxt.size -= 5;
+      break;
+
+    case 'bold':
+      currTxt.bold = true;
+      break;
+
+    case 'right': case 'center': case 'left':
+      currTxt.align = param;
+      break;
+
+    case 'up':
+      currTxt.line -= 10;
+      break;
+
+    case 'down':
+      currTxt.line += 10;
+      break;
+
+    default:
+      break;
+  }
+  setCanvas(gMeme.selectedImgId);
+}
+
+
+function getlastIdxTxt(idx) {
+  var txt = gMeme.txts.find(function (txt) {
+    return txt.textareaIdx === idx;
+  });
+  console.log('last-txt', txt);
+
+  if (txt) return txt;
+  else
+    return {
+      str: 'I never eat Falafel',
+      line: 100,
+      size: 56,
+      align: 'center',
+      color: 'red',
+      font: 'Impact',
+      bold: true,
+      textareaIdx: idx
+    };
 }

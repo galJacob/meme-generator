@@ -110,7 +110,11 @@ ul.container {
   display: none;
 }
 .btn{
+<<<<<<< HEAD
     width: 70px;
+=======
+    width: 50px;
+>>>>>>> 97eddad97a1f48f0a7bb07505289fcbbafe1155e
     height: 40px;
     cursor: pointer;
     background-color: brown;
@@ -125,5 +129,10 @@ ul.container {
 }
 .column {
   flex-direction: column;
+}
+
+input[type="color"] {
+  width: 100%;
+  height: 100%;
 }
 /* !/Helper */
