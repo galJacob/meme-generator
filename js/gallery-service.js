@@ -59,8 +59,7 @@ function createPopularImgsMap() {
     if (popularImgsMap) return popularImgsMap;
     popularImgsMap = {};
     popularImgsMap = {
-        'trump': 4,
-        'happy': 3,
+        'happy': 4,
         'racist': 1
     };
     savePopularMapToStorage(popularImgsMap);
@@ -78,11 +77,12 @@ function getImgKeywordByinput(input) {
 }
 
 function addpopularKeyword(keyword) {
-    if (keyword) {
+    if (keyword && gPopularWordCounter < 28) {
         gPopularImgsMap[keyword] ? gPopularImgsMap[keyword]++ : gPopularImgsMap[keyword] = 1;
         checkMaxLimitFontSize(keyword);
         savePopularMapToStorage(gPopularImgsMap);
     }
+    gPopularWordCounter = 0;
 }
 function checkMaxLimitFontSize(keyword) {
     if (gPopularImgsMap[keyword] >= 7)
