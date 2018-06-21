@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <title>Memes Generator</title>
 </head>
 
 <body onload="init()">
-<<<<<<< HEAD
     <h1>meme Generator!</h1>
     <header class="flex">
         <nav class="flex">
@@ -21,20 +21,6 @@
 
         </nav>
 
-=======
-    <header class="container">
-        <div class="popular-imgs-container">
-            <h1>
-                <a onclick="putPopularWordInInput()" href="">asd</a>
-            </h1>
-            <h2>
-                <a onclick="putPopularWordInInput()" href="">asd</a>
-            </h2>
-            <h3>
-                <a onclick="putPopularWordInInput()" href="">asd</a>
-            </h3>
-        </div>
->>>>>>> 97eddad97a1f48f0a7bb07505289fcbbafe1155e
     </header>
     <main class="container">
         <!-- Gal -->
@@ -64,12 +50,12 @@
 
     <!-- Didi -->
     <div class="modal hide" id="editor-modal">
+        <button class="return-btn btn" onclick="closeModal()">&times;</button>
         <div class="modal-content center-items flex">
 
             <!-- TODO(Didi): add wrap for mobile to make the text editor on column -->
 
-            <button class="return-btn btn" onclick="closeModal()">&times;</button>
-            <canvas id="meme-canvas" class="img-canvas">
+            <canvas id="meme-canvas" class="img-canvas" onclick="handleKey(event)">
             </canvas>
 
             <div class="textareas-container flex column">
@@ -87,9 +73,9 @@
                         <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', 1)">▼</button>
 
                         <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', 1)">B</button>
-                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 1)">R</button>
-                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 1)">C</button>
                         <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', 1)">L</button>
+                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 1)">C</button>
+                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 1)">R</button>
                     </div>
                     <div class="font-pick font-pick1 hide">
                         <label>Choose Font:</label>
@@ -114,9 +100,9 @@
                         <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', 2)">▼</button>
 
                         <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', 2)">B</button>
-                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 2)">R</button>
-                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 2)">C</button>
                         <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', 2)">L</button>
+                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 2)">C</button>
+                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 2)">R</button>
                     </div>
                     <div class="font-pick font-pick2 hide">
                         <label>Choose Font:</label>
@@ -141,9 +127,9 @@
                         <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', 3)">▼</button>
 
                         <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', 3)">B</button>
-                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 3)">R</button>
-                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 3)">C</button>
                         <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', 3)">L</button>
+                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 3)">C</button>
+                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 3)">R</button>
                     </div>
                     <div class="font-pick font-pick3 hide">
                         <label>Choose Font:</label>
