@@ -68,7 +68,7 @@ function updateTxtAt(param, id, type) {
       break;
 
     case 'bold':
-      currTxt.bold = true;
+      currTxt.bold = !currTxt.bold;
       break;
 
     case 'right': case 'center': case 'left':
@@ -94,18 +94,21 @@ function getlastIdxTxt(idx) {
   var txt = gMeme.txts.find(function (txt) {
     return txt.textareaIdx === idx;
   });
-  console.log('last-txt', txt);
 
   if (txt) return txt;
-  else
-    return {
-      str: 'I never eat Falafel',
-      line: 100,
-      size: 56,
-      align: 'center',
-      color: 'red',
-      font: 'Impact',
-      bold: true,
-      textareaIdx: idx
-    };
+  else {
+    var tempLine = 100;
+    if (idx === 2) tempLine= 220;
+    if (idx === 3) tempLine= 340;
+      return {
+        str: 'I never eat Falafel',
+        line: tempLine,
+        size: 56,
+        align: 'center',
+        color: 'red',
+        font: 'Impact',
+        bold: true,
+        textareaIdx: idx
+      };
+  }
 }
