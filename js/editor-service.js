@@ -16,13 +16,12 @@ var gMeme = {
     }
   ]
 };
-
 function assignTxt(txtToAssign) {
-  gMeme.txts = filterTxtsByTextareaIdx(gMeme.txts, txtToAssign.textareaIdx);
-  gMeme.txts.unshift(txtToAssign);
+  // gMeme.txts = filterTxtsByTextareaIdx(gMeme.txts, txtToAssign.textareaIdx);
+  // gMeme.txts.unshift(txtToAssign);
+  gMeme.txts[txtToAssign.textareaIdx] = txtToAssign;
   setCanvas(gMeme.selectedImgId);
 }
-
 function chooseMeme(id) {
   gMeme = {
     selectedImgId: id,
@@ -34,15 +33,12 @@ function filterTxtsByTextareaIdx(txts, textareaIdx) {
     return txt.textareaIdx !== textareaIdx;
   });
 }
-
 function getMemeTxts() {
   return gMeme.txts;
 }
-
 function updateFontSizeTxt(txt, diff) {
   txt.size += diff;
 }
-
 function updateTxtAt(param, id, type) {
   var currTxt = gMeme.txts.find(function (txt) {
     return txt.textareaIdx === id;
@@ -88,31 +84,28 @@ function updateTxtAt(param, id, type) {
   }
   setCanvas(gMeme.selectedImgId);
 }
-
-
-function getlastIdxTxt(idx) {
-  var txt = gMeme.txts.find(function (txt) {
-    return txt.textareaIdx === idx;
-  });
-
-  if (txt) return txt;
-  else {
-    var tempLine = 100;
-    if (idx === 2) tempLine= 220;
-    if (idx === 3) tempLine= 340;
-      return {
-        str: 'I never eat Falafel',
-        line: tempLine,
-        size: 56,
-        align: 'center',
-        color: 'red',
-        font: 'Impact',
-        bold: true,
-        textareaIdx: idx
-      };
-  }
+function getLastIdxTxt(idx) {
+  var txt = gMeme.txts[idx];
+  if (txt && txt !== undefined) return txt;
+  return {
+    str: '',
+    line: 100,
+    size: 56,
+    align: 'center',
+    color: '#ffffff',
+    font: 'Impact',
+    bold: true,
+    textareaIdx: idx
+  };
 }
-
-function getCurrId(){
+function getCurrId() {
   return gMeme.selectedImgId;
+}
+function getValueByIdx(idx) {
+  var txt = gMeme.txts[idx];
+  if (txt && txt !== undefined) return txt.str;
+  return '';
+}
+function getTxtsLength(){
+  return gMeme.txts.length;
 }

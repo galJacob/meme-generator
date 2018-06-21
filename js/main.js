@@ -24,29 +24,23 @@ function renderImgs(imgs) {
     var elImgsContainer = document.querySelector('.imgs-container ul');
     elImgsContainer.innerHTML = strHtml;
 }
-
 function openModal(id) {
-  var elModal = document.querySelector('#editor-modal');
-
-  //clean Modal Textareas by NodeList
-  var elInputs = document.querySelectorAll('.add-line-container textarea');
-  for (var i = 0; i < elInputs.length; i++) {
-    elInputs[i].value = '';
-  }
-  setCanvas(id);
-  elModal.classList.toggle('hide');
-  chooseMeme(id);
-  var elBody = document.querySelector('body');
-  elBody.style.overflow = 'hidden';
+    var elModal = document.querySelector('#editor-modal');
+    //clean Modal Textareas by NodeList
+    cleanTextareas();
+    setCanvas(id);
+    elModal.classList.toggle('hide');
+    chooseMeme(id);
+    renderTextarea(0);
+    var elBody = document.querySelector('body');
+    elBody.classList.toggle('no-scroll');
 }
-
 function closeModal() {
-  var elModal = document.querySelector('#editor-modal');
-  elModal.classList.toggle('hide');
-  var elBody = document.querySelector('body');
-  elBody.style.overflow = 'hidden';
+    var elModal = document.querySelector('#editor-modal');
+    elModal.classList.toggle('hide');
+    var elBody = document.querySelector('body');
+    elBody.classList.toggle('no-scroll');
 }
-
 function setCanvas(id) {
     var elCanvas = document.querySelector('#meme-canvas');
 
@@ -64,13 +58,11 @@ function setCanvas(id) {
     };
     img.src = `meme-imgs/${id}.jpg`;
 }
-
 function renderTxtsOnCanvas(txts) {
     txts.forEach(function (txt) {
         renderTxtOnCanvas(txt);
     });
 }
-
 function renderTxtOnCanvas(txt) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
@@ -86,16 +78,13 @@ function renderTxtOnCanvas(txt) {
     if (txt.bold) ctx.strokeText(txt.str, x, txt.line);
 
 }
-
-
-
 function onInpTextarea(elInput) {
     // console.log('elInput', elInput.dataset.idx);
     var str = elInput.value;
     // TODO: more inputs to send to obj
     var textareaIdx = +elInput.dataset.idx;
     // txtBeenBefore(elInput);
-    var lastIdxTxt = getlastIdxTxt(textareaIdx);
+    var lastIdxTxt = getLastIdxTxt(textareaIdx);
     var line = lastIdxTxt.line;
     var size = lastIdxTxt.size;
     var align = lastIdxTxt.align;
@@ -114,13 +103,11 @@ function onInpTextarea(elInput) {
         bold: bold
     });
 }
-
 //gets the input from the user and showing the pictures that match the typed letters
 function renderImgsByInput(elInput) {
     var sortedImgs = sortImgsByInput(elInput.value);
     renderImgs(sortedImgs);
 }
-
 function displayPopularImgsMap(popularImgsMap) {
     var elPopularContainer = document.querySelector('.popular-imgs-container');
     var strHtml = '<h1>popular searches:</h1> ';
@@ -139,21 +126,14 @@ function onPopularImgsMapInput(elInput) {
     addpopularKeyword(keyword);
     displayPopularImgsMap(gPopularImgsMap);
 }
-
 function showFontMenu(id) {
-  document.querySelector(`.font-pick${id}`).classList.toggle('hide');
+    document.querySelector(`.font-pick${id}`).classList.toggle('hide');
 }
-
 function onUpdateTxtBy(param, id, type) {
     var elTextarea = document.querySelector(`#textarea${id}`);
     if (!elTextarea.value) return;
     updateTxtAt(param, id, type);
 }
-
-// function renderColorCtrlMenu() {
-//   var elMenu = document.querySelector('.ctrl-btn-menu');
-//   var strHtmls = 
-// }
 // gal
 function toggleMenu() {
     var elNav = document.querySelector('nav');
@@ -170,51 +150,65 @@ function toggleMenu() {
 
 
 function handleKey(ev) {
-  console.log('ev', ev)
-  var offsetY = ev.offsetY;
-  // updateLineAtCurrTxt();
+    console.log('ev', ev)
+    var offsetY = ev.offsetY;
+    // updateLineAtCurrTxt();
+}
+function renderTextarea(idx, line) {
+    var length = getTxtsLength();
+    if (idx === -1 || idx > length) return;
+    var txt = getLastIdxTxt(idx);
+    var value = txt.str;
+    var color = txt.color;
+    console.log('value: ', value, 'idx: ', idx);
+
+    var strHtml = `<div class="add-line-container flex column" id="add-line${idx}">
+        <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" placeholder="Enter Text" value="${value}">${value}</textarea>
+        <div class="ctrl-btns-container flex">
+        <button class="ctrl-btn btn ctrl-color">
+        <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
+        </button>
+        <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', ${idx})">+</button>
+        <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', ${idx})">-</button>
+        <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(${idx})">A</button>
+        <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', ${idx})">▲</button>
+        <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', ${idx})">▼</button>
+        
+        <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', ${idx})">B</button>
+        <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', ${idx})">L</button>
+        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${idx})">C</button>
+        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${idx})">R</button>
+        </div>
+        <div class="font-pick font-pick${idx} hide">
+        <label>Choose Font:</label>
+        <ul class="clean-list">
+        <li onclick="onUpdateTxtBy('font', ${idx} ,'Impact')">Impact</li>
+        <li onclick="onUpdateTxtBy('font', ${idx} ,'Arial')">Arial</li>
+        <li onclick="onUpdateTxtBy('font', ${idx} ,'Times New Roman')">Times New Roman</li>
+        </ul>
+        </div>
+        </div> 
+        `;
+
+    var elTextareaContainer = document.querySelector('.add-line-container');
+    elTextareaContainer.innerHTML = strHtml;
+
+    //assign status
+    strHtml =
+        `<button class="btn browse-btn ctrl-btn" onclick="renderTextarea(${idx + 1})">🡹</button>
+    <button class="show-curr-line btn ctrl-btn">${idx+1}</button>
+    <button class="btn browse-btn ctrl-btn" onclick="renderTextarea(${idx - 1})">🡻</button>`;
+
+    var elBrowseTxtsContainer = document.querySelector('.browseTxts-container');
+    elBrowseTxtsContainer.innerHTML = strHtml;
+}
+function onChangeTxtIdx(diff) {
+    renderTextarea(id + diff);
 }
 
-function renderTextarea(id, line) {
-  var strHtml = `<div class="add-line-container flex column" id="add-line${id}">
-  <textarea data-idx="${id}" id="textarea${id}" oninput="onInpTextarea(this)" placeholder="Enter Text" value=""></textarea>
-  <div class="ctrl-btns-container flex">
-      <button class="ctrl-btn btn ctrl-color">
-          <input type="color" value="#ffffff" id="textarea-color${id}" oninput="onUpdateTxtBy('color', ${id}, this.value)">
-      </button>
-      <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', ${id})">+</button>
-      <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', ${id})">-</button>
-      <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(${id})">A</button>
-      <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', ${id})">▲</button>
-      <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', ${id})">▼</button>
-
-      <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', ${id})">B</button>
-      <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', ${id})">L</button>
-      <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${id})">C</button>
-      <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${id})">R</button>
-  </div>
-  <div class="font-pick font-pick${id} hide">
-      <label>Choose Font:</label>
-      <ul class="clean-list">
-          <li onclick="onUpdateTxtBy('font', ${id} ,'Impact')">Impact</li>
-          <li onclick="onUpdateTxtBy('font', ${id} ,'Arial')">Arial</li>
-          <li onclick="onUpdateTxtBy('font', ${id} ,'Times New Roman')">Times New Roman</li>
-      </ul>
-  </div>
-</div> 
-  `;
-
-  var elTextareaContainer = document.querySelector('.add-line-container');
-  elTextareaContainer.innerHTML = strHtml;
-  renderCurrId(id);
-}
-var gId=1;
-function onChangeTxtId(diff) {
-  var id = gId + diff;
-  renderTextarea(id);
-}
-
-function renderCurrId(id){
-  var elP = document.querySelector('.show-curr-id');
-  elP.innerText = id;
+function cleanTextareas() {
+    var elInputs = document.querySelectorAll('.add-line-container textarea');
+    for (var i = 0; i < elInputs.length; i++) {
+        elInputs[i].value = '';
+    }
 }

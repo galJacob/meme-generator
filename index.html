@@ -16,10 +16,10 @@
         <nav class="flex">
             <a href="#editor-modal">editor modal </a>
             <a href="#get-in-touch">get in touch</a>
-                    <div class="menu-arrow flex">
-                        <i onclick="toggleMenu()" class="fa fa-location-arrow fa-2x location-menu-arrow"></i>
-                        <i class="fa fa-sort-down fa-5x"></i>
-                    </div>
+            <div class="menu-arrow flex">
+                <i onclick="toggleMenu()" class="fa fa-location-arrow fa-2x location-menu-arrow"></i>
+                <i class="fa fa-sort-down fa-5x"></i>
+            </div>
             <a href="#about">about</a>
             <a href="#popular-imgs">popular imgs</a>
         </nav>
@@ -32,8 +32,8 @@
             <input type="text" value="" placeholder="http://"> -->
         <!-- </div> -->
     </header>
-        <div class="popular-imgs-container flex">
-        </div>
+    <div class="popular-imgs-container flex">
+    </div>
     <main class="container">
         <!-- Gal -->
         <div class="input-container">
@@ -67,104 +67,24 @@
         <div class="modal-content flex">
 
             <!-- TODO(Didi): add wrap for mobile to make the text editor on column -->
-            <canvas id="meme-canvas" class="img-canvas" onclick="handleKey(event)">
-            </canvas>
-
-            <div class="centerer"></div>
-
-            <div class="textareas-container flex column">
-                <div class="add-line-container flex column" id="add-line1">
-                    <textarea data-idx="1" id="textarea1" oninput="onInpTextarea(this)" placeholder="Enter Text" value=""></textarea>
-                    <div class="ctrl-btns-container flex">
-                        <button class="ctrl-btn btn ctrl-color">
-                            <input type="color" value="#ffffff" id="textarea-color1" oninput="onUpdateTxtBy('color', 1, this.value)">
-                        </button>
-                        <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', 1)">+</button>
-                        <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', 1)">-</button>
-                        <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(1)">A</button>
-                        <!-- Maybe change font func -->
-                        <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', 1)">▲</button>
-                        <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', 1)">▼</button>
-
-                        <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', 1)">B</button>
-                        <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', 1)">L</button>
-                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 1)">C</button>
-                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 1)">R</button>
-                    </div>
-                    <div class="font-pick font-pick1 hide">
-                        <label>Choose Font:</label>
-                        <ul class="clean-list">
-                            <li onclick="onUpdateTxtBy('font', 1 ,'Impact')">Impact</li>
-                            <li onclick="onUpdateTxtBy('font', 1 ,'Arial')">Arial</li>
-                            <li onclick="onUpdateTxtBy('font', 1 ,'Times New Roman')">Times New Roman</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="add-line-container flex column" id="add-line2">
-                    <textarea data-idx="2" id="textarea2" oninput="onInpTextarea(this)" placeholder="Enter Text" value=""></textarea>
-                    <div class="ctrl-btns-container flex">
-                        <button class="ctrl-btn btn ctrl-color">
-                            <input type="color" value="#ffffff" id="textarea-color2" oninput="onUpdateTxtBy('color', 2, this.value)">
-                        </button>
-                        <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', 2)">+</button>
-                        <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', 2)">-</button>
-                        <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(2)">A</button>
-                        <!-- Maybe change font func -->
-                        <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', 2)">▲</button>
-                        <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', 2)">▼</button>
-
-                        <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', 2)">B</button>
-                        <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', 2)">L</button>
-                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 2)">C</button>
-                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 2)">R</button>
-                    </div>
-                    <div class="font-pick font-pick2 hide">
-                        <label>Choose Font:</label>
-                        <ul class="clean-list">
-                            <li onclick="onUpdateTxtBy('font', 2 ,'Impact')">Impact</li>
-                            <li onclick="onUpdateTxtBy('font', 2 ,'Arial')">Arial</li>
-                            <li onclick="onUpdateTxtBy('font', 2 ,'Times New Roman')">Times New Roman</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="add-line-container flex column" id="add-line3">
-                    <textarea data-idx="3" id="textarea3" oninput="onInpTextarea(this)" placeholder="Enter Text" value=""></textarea>
-                    <div class="ctrl-btns-container flex">
-                        <button class="ctrl-btn btn ctrl-color">
-                            <input type="color" value="#ffffff" id="textarea-color3" oninput="onUpdateTxtBy('color', 3, this.value)">
-                        </button>
-                        <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', 3)">+</button>
-                        <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', 3)">-</button>
-                        <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(3)">A</button>
-                        <!-- Maybe change font func -->
-                        <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', 3)">▲</button>
-                        <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', 3)">▼</button>
-
-                        <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', 3)">B</button>
-                        <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', 3)">L</button>
-                        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', 3)">C</button>
-                        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', 3)">R</button>
-                    </div>
-                    <div class="font-pick font-pick3 hide">
-                        <label>Choose Font:</label>
-                        <ul class="clean-list">
-                            <li onclick="onUpdateTxtBy('font', 3 ,'Impact')">Impact</li>
-                            <li onclick="onUpdateTxtBy('font', 3 ,'Arial')">Arial</li>
-                            <li onclick="onUpdateTxtBy('font', 3 ,'Times New Roman')">Times New Roman</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- <div class="browseTxts-container">
-                    <button class="btn up-browse-btn" onclick="onChangeTxtId(1)"></button>
-                    <div class="show-curr-id"></div>
-                    <button class="btn down-browse-btn" onclick="onChangeTxtId(-1)"></button>
-                </div> -->
+            <div class="cavas-container">
+                <canvas id="meme-canvas" class="img-canvas" onclick="handleKey(event)">
+                </canvas>
             </div>
-            <!--Falafel style for textarea: "overflow: hidden;
+
+            <div class="textareas-container flex center-items">
+                <div class="browseTxts-container flex column">
+                </div>
+                <div class="add-line-container flex column" id="add-line">
+                </div>
+            </div>
+        </div>
+
+        <!--Falafel style for textarea: "overflow: hidden;
                 word-wrap: break-word;
                 resize: horizontal;
                 height: 20px;" -->
-        </div>
+    </div>
     </div>
     <!-- Didi -->
     <script src="js/upload-service.js"></script>

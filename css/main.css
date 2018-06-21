@@ -173,6 +173,7 @@ ul.container {
   width: 500px;
   height: auto;
   cursor: crosshair;
+  margin: 10px;
   /* TODO: Respons. cancel the mrgn */
   /* margin: 40px auto 20px auto; */
 }
@@ -209,7 +210,7 @@ ul.container {
 } */
 .textareas-container {
   max-width: 100%;
-  margin: 20px 0 0 0;
+  margin: 10px;
 }
 
 
@@ -244,6 +245,15 @@ ul.container {
 
 .btn.ctrl-btn:first-of-type {
   cursor: default;
+}
+
+.btn.browse-btn{
+  color: blue;
+}
+.browseTxts-container span{
+  color: blue;
+  margin: 0 25px;
+  
 }
 
 /* didi */
@@ -282,5 +292,8 @@ input[type="color"] {
 
 .no-scroll {
   overflow: hidden;
+}
+.wrap {
+  flex-wrap: wrap;
 }
 /* !/Helper */
