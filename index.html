@@ -4,41 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <title>Memes Generator</title>
 </head>
 
 <body onload="init()">
-<<<<<<< HEAD
-    <h1>meme Generator!</h1>
     <header class="flex">
         <nav class="flex">
-            <div class="load-inputs-container flex">load-inputs-container</div>
             <a href="#editor-modal">editor modal</a>
             <a href="#get-in-touch">get in touch</a>
+            <div class="menu-arrow flex" onclick="toggleMenu()">
+                <i class="fa fa-sort-down fa-5x" style="line-height: 30px;"></i>
+            </div>
             <a href="#about">about</a>
-            <div class="popular-imgs-container flex"></div>
-
+            <a href="#popular-imgs">popular imgs</a>
         </nav>
 
-=======
-    <header class="container">
-        <div class="popular-imgs-container">
-            <h1>
-                <a onclick="putPopularWordInInput()" href="">asd</a>
-            </h1>
-            <h2>
-                <a onclick="putPopularWordInInput()" href="">asd</a>
-            </h2>
-            <h3>
-                <a onclick="putPopularWordInInput()" href="">asd</a>
-            </h3>
-        </div>
->>>>>>> 97eddad97a1f48f0a7bb07505289fcbbafe1155e
+        <!-- uploading a file,for later: -->
+        <!-- <div class="load-imgs-container flex">
+            reminder:put folder logo entity:
+            <input type="file" id="input-img" onchange="onFileInputChange(this.files)">
+            <button class="btn link-btn"> load from url: </button>
+            <input type="text" value="" placeholder="http://"> -->
+        <!-- </div> -->
     </header>
     <main class="container">
+        <div class="popular-imgs-container flex"></div>
         <!-- Gal -->
         <div class="input-container">
+            <!-- find a use for this button: -->
             <button class="btn" onclick="submit-link()"></button>
             <input type="text" list="words" value="" oninput="renderImgsByInput(this),onPopularImgsMapInput(this)">
             <datalist id="words">
@@ -162,6 +158,7 @@
         </div>
     </div>
     <!-- Didi -->
+    <script src="js/upload-service.js"></script>
     <script src="js/utils-service.js"></script>
     <script src="js/gallery-service.js"></script>
     <script src="js/editor-service.js"></script>

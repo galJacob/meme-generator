@@ -32,13 +32,8 @@ function openModal(id) {
 }
 
 function closeModal() {
-<<<<<<< HEAD
     var elModal = document.querySelector('#editor-modal');
     elModal.classList.toggle('hide');
-=======
-  var elModal = document.querySelector('#editor-modal');
-  elModal.classList.toggle('hide');
->>>>>>> 97eddad97a1f48f0a7bb07505289fcbbafe1155e
 }
 
 function setCanvas(id) {
@@ -81,16 +76,17 @@ function renderTxtOnCanvas(txt) {
 
 
 function onInpTextarea(elInput) {
-<<<<<<< HEAD
     // console.log('elInput', elInput.dataset.idx);
     var str = elInput.value;
     // TODO: more inputs to send to obj
-    var line = getLineFromUser();
-    var size = getSizeFromUser();
-    var align = getAlignFromUser();
-    var color = getColorFromUser();
-    var font = getFontFromUser();
-    var textareaIdx = elInput.dataset.idx;
+    var textareaIdx = +elInput.dataset.idx;
+    // txtBeenBefore(elInput);
+    var lastIdxTxt = getlastIdxTxt(textareaIdx);
+    var line = lastIdxTxt.line;
+    var size = lastIdxTxt.size;
+    var align = lastIdxTxt.align;
+    var color = document.querySelector(`#textarea-color${textareaIdx}`).value;
+    var font = lastIdxTxt.font;
 
     assignTxt({
         str: str,
@@ -103,59 +99,20 @@ function onInpTextarea(elInput) {
     });
 }
 
-function getLineFromUser() {
-    return 100;
-}
-function getSizeFromUser() {
-    return 56;
-}
-function getAlignFromUser() {
-    return 'center';
-}
-function getColorFromUser() {
-    return 'red';
-}
-function getFontFromUser() {
-    return 'Impact';
-=======
-  // console.log('elInput', elInput.dataset.idx);
-  var str = elInput.value;
-  // TODO: more inputs to send to obj
-  var textareaIdx = +elInput.dataset.idx;
-  // txtBeenBefore(elInput);
-  var lastIdxTxt = getlastIdxTxt(textareaIdx);
-  var line = lastIdxTxt.line;
-  var size = lastIdxTxt.size;
-  var align = lastIdxTxt.align;
-  var color = document.querySelector(`#textarea-color${textareaIdx}`).value;
-  var font = lastIdxTxt.font;
-
-  assignTxt({
-    str: str,
-    line: line,
-    size: size,
-    align: align,
-    color: color,
-    font: font,
-    textareaIdx: textareaIdx
-  });
-}
-
 function getLineFromUser(line = 100) {
-  return line;
+    return line;
 }
 function getSizeFromUser(size = 56) {
-  return size;
+    return size;
 }
 function getAlignFromUser(align = 'center') {
-  return align;
+    return align;
 }
 function getColorFromUser(color = 'red') {
-  return color;
+    return color;
 }
 function getFontFromUser(font = 'Impact') {
-  return font;
->>>>>>> 97eddad97a1f48f0a7bb07505289fcbbafe1155e
+    return font;
 }
 
 //gets the input from the user and showing the pictures that match the typed letters
@@ -183,14 +140,14 @@ function onPopularImgsMapInput(elInput) {
 }
 
 function showFontMenu(id) {
-  document.querySelector(`.font-pick${id}`).classList.toggle('hide');
+    document.querySelector(`.font-pick${id}`).classList.toggle('hide');
 }
 
 function onUpdateTxtBy(param, id, type) {
-  var elTextarea = document.querySelector(`#textarea${id}`);
-  console.log('elTextArea.value', elTextarea.value);
-  if (!elTextarea.value) return;
-  updateTxtAt(param, id, type);
+    var elTextarea = document.querySelector(`#textarea${id}`);
+    console.log('elTextArea.value', elTextarea.value);
+    if (!elTextarea.value) return;
+    updateTxtAt(param, id, type);
 }
 
 // function renderColorCtrlMenu() {
@@ -198,7 +155,13 @@ function onUpdateTxtBy(param, id, type) {
 //   var strHtmls = 
 // }
 // gal
-
+function toggleMenu() {
+    var elNav = document.querySelector('nav');
+    var elMenuArrow = document.querySelector('.menu-arrow');
+    elNav.classList.toggle('closed-nav');
+    elMenuArrow.classList.toggle('closed-menu-arrow');
+    console.log(elNav);
+}
 // gal
 
 // Didi
