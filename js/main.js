@@ -38,13 +38,8 @@ function openModal(id) {
 }
 
 function closeModal() {
-<<<<<<< HEAD
     var elModal = document.querySelector('#editor-modal');
     elModal.classList.toggle('hide');
-=======
-  var elModal = document.querySelector('#editor-modal');
-  elModal.classList.toggle('hide');
->>>>>>> 1f0583e2421dbafd7e332c472580888b238a6f1d
 }
 
 function setCanvas(id) {
@@ -85,46 +80,6 @@ function renderTxtOnCanvas(txt) {
 
   if (txt.bold) ctx.strokeText(txt.str, x, txt.line);
 
-<<<<<<< HEAD
-function onInpTextarea(elInput) {
-    // console.log('elInput', elInput.dataset.idx);
-    var str = elInput.value;
-    // TODO: more inputs to send to obj
-    var textareaIdx = +elInput.dataset.idx;
-    // txtBeenBefore(elInput);
-    var lastIdxTxt = getlastIdxTxt(textareaIdx);
-    var line = lastIdxTxt.line;
-    var size = lastIdxTxt.size;
-    var align = lastIdxTxt.align;
-    var color = document.querySelector(`#textarea-color${textareaIdx}`).value;
-    var font = lastIdxTxt.font;
-
-    assignTxt({
-        str: str,
-        line: line,
-        size: size,
-        align: align,
-        color: color,
-        font: font,
-        textareaIdx: textareaIdx
-    });
-}
-
-function getLineFromUser(line = 100) {
-    return line;
-}
-function getSizeFromUser(size = 56) {
-    return size;
-}
-function getAlignFromUser(align = 'center') {
-    return align;
-}
-function getColorFromUser(color = 'red') {
-    return color;
-}
-function getFontFromUser(font = 'Impact') {
-    return font;
-=======
 }
 
 
@@ -153,7 +108,6 @@ function onInpTextarea(elInput) {
     textareaIdx: textareaIdx,
     bold: bold
   });
->>>>>>> 1f0583e2421dbafd7e332c472580888b238a6f1d
 }
 
 //gets the input from the user and showing the pictures that match the typed letters
@@ -185,16 +139,9 @@ function showFontMenu(id) {
 }
 
 function onUpdateTxtBy(param, id, type) {
-<<<<<<< HEAD
-    var elTextarea = document.querySelector(`#textarea${id}`);
-    console.log('elTextArea.value', elTextarea.value);
-    if (!elTextarea.value) return;
-    updateTxtAt(param, id, type);
-=======
   var elTextarea = document.querySelector(`#textarea${id}`);
   if (!elTextarea.value) return;
   updateTxtAt(param, id, type);
->>>>>>> 1f0583e2421dbafd7e332c472580888b238a6f1d
 }
 
 // function renderColorCtrlMenu() {
