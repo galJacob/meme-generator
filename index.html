@@ -65,9 +65,10 @@
         <div class="modal-content flex">
 
             <!-- TODO(Didi): add wrap for mobile to make the text editor on column -->
-
             <canvas id="meme-canvas" class="img-canvas" onclick="handleKey(event)">
             </canvas>
+
+            <div class="centerer"></div>
 
             <div class="textareas-container flex column">
                 <div class="add-line-container flex column" id="add-line1">
@@ -151,6 +152,11 @@
                         </ul>
                     </div>
                 </div>
+                <!-- <div class="browseTxts-container">
+                    <button class="btn up-browse-btn" onclick="onChangeTxtId(1)"></button>
+                    <div class="show-curr-id"></div>
+                    <button class="btn down-browse-btn" onclick="onChangeTxtId(-1)"></button>
+                </div> -->
             </div>
             <!--Falafel style for textarea: "overflow: hidden;
                 word-wrap: break-word;
