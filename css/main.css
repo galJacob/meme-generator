@@ -152,6 +152,18 @@ ul.container {
   background: url(../img/crazy.jpg) no-repeat center center;
 }
 
+/* suggession for modal changes
+.modal {
+  width: 100%;
+  height: fit-content;
+  z-index: 10000;
+  position: absolute;
+  top: unset;
+  right: 0;
+  bottom: 25%;
+  background: url(../img/crazy.jpg) no-repeat center center;
+} */
+
 .modal-content {
   width: 100%;
   flex-flow: row wrap;
@@ -164,9 +176,10 @@ ul.container {
   width: 40px;
   height: 40px;
   font-size: 2rem;
-  background: #cf3a3a;
-  color: white;
-  border: 2px solid white;
+  background: rgb(239, 243, 205);
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 50%;
 }
 .img-canvas{
   max-width: 100%;
@@ -174,8 +187,8 @@ ul.container {
   height: auto;
   cursor: crosshair;
   margin: 10px;
-  /* TODO: Respons. cancel the mrgn */
-  /* margin: 40px auto 20px auto; */
+  border: 5px rgb(239, 243, 205) solid;
+  border-radius: 5px;
 }
 
 .centerer{
@@ -248,7 +261,7 @@ ul.container {
 }
 
 .btn.browse-btn{
-  color: blue;
+  color: white;
 }
 .browseTxts-container span{
   color: blue;
