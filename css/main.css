@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: aqua;
+  background-color: rgb(99, 87, 87);
   margin: 0;
   font-family: 'Arvo', serif;
 }
@@ -140,7 +140,7 @@ ul.container {
 /* didi */
 .modal {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 10000;
   position: fixed;
   bottom: 0;
@@ -153,6 +153,8 @@ ul.container {
   width: 100%;
   height: 100%;
   flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn.return-btn{
@@ -167,14 +169,44 @@ ul.container {
   border: 1px solid white;
 }
 .img-canvas{
-  max-height: 70%;
-  max-width: 100vw;
+  max-width: 100%;
+  width: 500px;
+  height: auto;
   cursor: crosshair;
-  /* margin: 0 40px 0 0; */
+  /* TODO: Respons. cancel the mrgn */
+  margin: 40px auto 20px auto;
 }
+.add-line-container{
+  font-size: 1.1rem;
+}
+
+/* @media (max-width: 1000px){
+.modal-content {
+  flex-wrap: wrap;
+}
+
+.img-canvas{
+  width:auto;
+  height: 80;
+}
+
+.add-line-container{
+  font-size: 0.9rem;
+}
+} */
+/* @media (max-width: 770px){
+
+
+  .img-canvas{
+    width: 100%;
+    height: auto;
+  }
+} */
 .textareas-container {
   max-width: 100%;
+  margin: 20px auto;
 }
+
 
 .add-line-container textarea {
   background: #221616e3;
@@ -182,7 +214,7 @@ ul.container {
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 0.3px;
   padding: 16px 0px 0 8px;
-  font-size: 1.1rem;
+  font-size: inherit;
 }
 .add-line-container textarea::placeholder{
   color:#c7c4c4;
@@ -202,6 +234,7 @@ ul.container {
   border: 1px solid #f5f4f4;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight:  bold;
+  font-size: inherit;
 }
 
 .btn.ctrl-btn:first-of-type {
