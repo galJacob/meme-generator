@@ -172,13 +172,13 @@ ul.container {
 }
 
 .btn.return-btn{
-  margin: 10px;
-  width: 40px;
-  height: 40px;
-  font-size: 2rem;
+  margin: 1px;
+  width: 30px;
+  height: 30px;
+  font-size: 1.7rem;
   background: rgb(239, 243, 205);
   color: #513216;
-  border: 2px solid #513216;
+  border: 1px solid #513216;
   border-radius: 50%;
 }
 .img-canvas{
@@ -249,12 +249,12 @@ ul.container {
 }
 
 .modal-content .btn {
-  width: 32px; 
+  width: 33px; 
   height: 26px;
 }
 
 .btn.ctrl-btn {
-  background: #373232;
+  background: #2d1d0c;
   color: #eff3cd;
   border: 1px solid #eff3cd;
   font-weight: bold;
@@ -284,6 +284,14 @@ ul.container {
   .modal-content .btn {
     width: 35px;
     height: 30px;
+  }
+
+  .btn.return-btn {
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    border: 1px solid #513216;
   }
 }
 @media (min-width: 944px )
