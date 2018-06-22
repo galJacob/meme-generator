@@ -105,7 +105,8 @@ function onInpTextarea(elInput) {
 }
 //gets the input from the user and showing the pictures that match the typed letters
 function renderImgsByInput(elInput) {
-    var sortedImgs = sortImgsByInput(elInput.value);
+    var input = elInput.value.toLowerCase();
+    var sortedImgs = sortImgsByInput(input);
     renderImgs(sortedImgs);
 }
 function displayPopularImgsMap(popularImgsMap) {
@@ -120,7 +121,7 @@ function displayPopularImgsMap(popularImgsMap) {
     // console.log(elPopularContainer);
 }
 function onPopularImgsMapInput(elInput) {
-    var input = elInput.value;
+    var input = elInput.value.toLowerCase();
     gPopularImgsMap = loadPopularMapFromStorage();
     var keyword = getImgKeywordByinput(input);
     addpopularKeyword(keyword);
