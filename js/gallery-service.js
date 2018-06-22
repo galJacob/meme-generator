@@ -88,6 +88,12 @@ function checkMaxLimitFontSize(keyword) {
     if (gPopularImgsMap[keyword] >= 7)
         gPopularImgsMap[keyword] = 7;
 }
+function putKeyWordsOnImg(keywords) {
+    var strToHtml = '<br> key words for meme: <br>';
+    for (var i = 0; i < keywords.length; i++)
+        i === keywords.length - 1 ? strToHtml += ' ' + keywords[i] + ' ' : strToHtml += ' ' + keywords[i] + ' , ';
+    return strToHtml;
+}
 
 
 

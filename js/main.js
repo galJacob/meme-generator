@@ -17,7 +17,11 @@ function renderImgs(imgs) {
             img.id
             })" class="img-pick fit-background img-${
             img.id
-            }" style="background-image: url('meme-imgs/${img.id}.jpg')" </li>`;
+            }" style="background-image: url('meme-imgs/${img.id}.jpg')">
+            <div class = "img-hover">
+            ${putKeyWordsOnImg(img.keywords)}
+            </div>
+             </li>`;
         return strHtml;
     });
     var strHtml = strHtmls.join('');
@@ -137,9 +141,9 @@ function onUpdateTxtBy(param, id, type) {
 }
 function toggleMenu() {
     var elNav = document.querySelector('nav');
-    var elMenuArrow = document.querySelector('.location-menu-arrow');
+    var elMenuArrow = document.querySelector('.menu-arrow');
     elNav.classList.toggle('closed-nav');
-    elMenuArrow.classList.toggle('closed-location-menu-arrow');
+    elMenuArrow.classList.toggle('closed-menu-arrow');
 }
 function handleKey(ev) {
     console.log('ev', ev)

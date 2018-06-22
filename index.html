@@ -16,10 +16,7 @@
         <nav class="flex">
             <a href="#editor-modal">editor modal </a>
             <a href="#get-in-touch">get in touch</a>
-            <div class="menu-arrow flex">
-                <i onclick="toggleMenu()" class="fas fa-location-arrow fa-3x location-menu-arrow"></i>
-                <i class="fas fa-sort-down fa-6x"></i>
-            </div>
+            <i onclick="toggleMenu()" class="fas fa-sort-down fa-9x menu-arrow"></i>
             <a href="#about">about</a>
             <a href="#popular-imgs">popular imgs</a>
         </nav>
@@ -34,13 +31,15 @@
     </header>
     <div class="popular-imgs-container flex">
     </div>
-    <main class="container">
+    <main class="flex">
         <!-- Gal -->
-        <div class="input-container">
+        <div class="input-container flex">
+            <h2>
+                <b>search for a meme!</b>
+            </h2>
             <!-- find a use for this button: -->
-            <button class="btn" onclick="submit-link()"></button>
             <input type="text" list="words" value="" oninput="renderImgsByInput(this),onPopularImgsMapInput(this)">
-            <datalist id="words">
+            <datalist id="words" class="popular-list">
                 <option value="trump">
                     <option value="success">
                         <option value="racist">
@@ -52,9 +51,30 @@
             </ul>
         </div>
     </main>
-    <footer class="container">
-        <div id="get-in-touch">asdsa</div>
-        <div id="about">dsadassa</div>
+    <footer>
+        <div class="about-container flex" id="about">
+            <hr class="stylish-hr">
+            <div class="details-container flex">
+                <div class="profile-pic fit-background profile-pic-gal">
+                </div>
+                <h1>Gal Jacobovich</h1>
+                <h2>full-stack developer</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. nam magnam incidunt, delectus velit sint ipsam
+                    laudantium sed molestias? Vero pariatur
+                </p>
+            </div>
+            <div class="details-container flex">
+                <div class="profile-pic fit-background profile-pic-didi"></div>
+                <h1>Didi Cohen</h1>
+                <h2>full-stack developer</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. nam magnam incidunt, delectus velit sint ipsam
+                    laudantium sed molestias? Vero pariatur
+                </p>
+            </div>
+            <hr class="stylish-hr">
+        </div>
+        <div class="getInTouch-container" id="get-in-touch">
+        </div>
     </footer>
 
 

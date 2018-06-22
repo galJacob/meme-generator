@@ -3,52 +3,54 @@
 }
 
 body {
-  background-color: rgb(99, 87, 87);
+  /* background-color: rgb(99, 87, 87); */
   margin: 0;
   font-family: 'Arvo', serif;
 }
 
-.container{
-  display: flex;
+main{
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-} 
-
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
 /* gal */
 header{
     height: 50px;
     margin-bottom: 50px;
     background-color:#2f2f2f;
-    /* position: fixed; */
     width: 100%;
 }
 .menu-arrow{
-    padding-top: 30px;
-    color: #2f2f2f;
+  color: #2f2f2f;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding-top: 10px;
+  z-index: -1;
 }
-.location-menu-arrow{
-    display: block;
-    color: white;
-    transform: rotate(135deg);
-    cursor: pointer;
-    z-index: 1;
-    transition: all .5s;
-    position: relative;
-    left: 34%;
-    margin-bottom: 12px;
+.menu-arrow:hover{
+  color: chocolate;
 }
-.location-menu-arrow:hover{
-    color: #299f81
+.double-down-arrow{
+  color: white;
 }
+.input-container{
+  flex-direction: column;
+}
+
+.closed-menu-arrow{
+  color: white;
+}
+
 nav{
+  z-index: 1;
     justify-content: space-around;
     width: 100%;
     height: 100%;
     position: relative;
     transition: all 0.5s;
     align-items: center;
-    padding: 0 25%;
+    padding: 0 15%;
 }
 nav a{
     text-decoration: none;
@@ -77,6 +79,10 @@ h1{
   list-style-type: none;
   padding: 0;
 }
+.input-container input{
+  box-shadow: 0 0 6px rgb(13, 133, 167,1);
+}
+
 .popular-imgs-container{
     color: white;
     background-color: #2f2f2f;
@@ -86,18 +92,89 @@ h1{
     height:200px;
     max-height:500px;
     border-radius: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
 }
 .popular-imgs-container a{
     text-decoration: none;
     color: white;
 }
 .img-pick{
+cursor: pointer;
+border-radius: 10px;
+}
+.img-hover{
+  position: absolute;
+    width:inherit;
+    height: 0;
+    transition: all ease 0.5s;
+    opacity: 0;
+    background: rgba(2, 2, 2, 0.8);
+    color: white;
+    text-align: center;
+    border-radius: 10px;
 
+}
+.imgs-container li:hover > .img-hover{
+  opacity: 0.9;
+  height:inherit;
 }
 h1{
 text-align: center;
 }
+.about-container{
+  height: 400px;
+  background-color:#2ab499;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.details-container{
+  flex-direction: column;
+  height: inherit;
+  width: 30%;
+  padding-top: 5px;
+  justify-content: start;
+  align-items: center;
+}
+.profile-pic{
+  background-color: #000000;
+  height: 150px;
+  width: 150px;
+  border-radius: 10px;
+}
+.profile-pic-gal{
+  background-image: url(https://simpleprogrammer.com/wp-content/uploads/2013/03/programmer.jpg);
+}
+.profile-pic-didi{
+  background-image: url(https://fossbytes.com/wp-content/uploads/2017/09/programmer-in-rich-nation.jpg);
+}
+.details-container h1{
+  color: white;
+  font-size: 1.5rem;
+}
+.details-container h2{
+  color:black;
+    opacity: 0.4;
+    font-size: 1rem;
+}
+.details-container p{
+  color:white;
+  font-size: 1rem;
+  text-align: center;
+}
+.details-container h1,h2{
+  margin-top: 1px;
+}
+.getInTouch-container{
+  height: 600px;
+  background-color: #2f2f2f;
+}
+.stylish-hr{
+    width: 100%;
+    height:4px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+
 .load-imgs-container{
     background-color:blue;
     flex-direction: column;
@@ -106,7 +183,6 @@ text-align: center;
 .load-container{
     justify-content: space-between;
 }
-
 main a{
     text-decoration: none;
     color: black;
@@ -129,6 +205,9 @@ ul.container {
   width: 200px;
   height: 200px;
 }
+/* hexagon ? */
+/* hexagon ? */
+
 
 /* later: */
 /* @media asd */
