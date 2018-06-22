@@ -200,8 +200,8 @@ function cleanTextareas() {
 }
 function onDownloadImg(elLink, filename = 'meme.png') {
     console.log('Download!');
-    // TO Check
-    var idx = document.querySelector('.add-line-container textarea').dataset.idx;
+    // Add Clear Interval for fragement
+    // var idx = document.querySelector('.add-line-container textarea').dataset.idx;
     elLink.href = document.querySelector('#meme-canvas').toDataURL();
     elLink.download = filename;
 }
