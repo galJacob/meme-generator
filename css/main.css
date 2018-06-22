@@ -149,7 +149,7 @@ ul.container {
   position: fixed;
   bottom: 0;
   right: 0;
-  background: url(../img/crazy.jpg) no-repeat center center #00050b;
+  background: url(../img/parquet.jpg) repeat center center #00050b;
 }
 
 /* suggession for modal changes
@@ -177,8 +177,8 @@ ul.container {
   height: 40px;
   font-size: 2rem;
   background: rgb(239, 243, 205);
-  color: #000000;
-  border: 2px solid #000000;
+  color: #513216;
+  border: 2px solid #513216;
   border-radius: 50%;
 }
 .img-canvas{
@@ -229,12 +229,13 @@ ul.container {
 
 
 .add-line-container textarea {
-  background: #221616e3;
+  background: #331f0de3;
   color: white;
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 0.3px;
   padding: 16px 0px 0 8px;
   font-size: inherit;
+  border: 2px solid #d9dcba;
 }
 .add-line-container textarea::placeholder{
   color:#c7c4c4;
@@ -242,7 +243,7 @@ ul.container {
   }
 
 .ctrl-btns-container {
-  background: #b3b3b3;
+  background: #d9dcba;
   /* padding: 0 2.5px; */
   /* border-radius: 10px; */
 }
@@ -254,8 +255,8 @@ ul.container {
 
 .btn.ctrl-btn {
   background: #373232;
-  color: #f5f4f4;
-  border: 1px solid #d9d1d1;
+  color: #eff3cd;
+  border: 1px solid #eff3cd;
   font-weight: bold;
   font-size: inherit;
 }
@@ -264,17 +265,17 @@ ul.container {
   color: #f5f4f4;
   font-size: 1.1rem;
   font-weight: bold;
-  -webkit-text-stroke: 0.25px #373232;
+  -webkit-text-stroke: 0.25px #37230f;
   padding: 4px 0;
   margin: 0 12px;
   text-align: center;
   align-items: center;
-  transform: scale(1.5,1.2);
+  transform: scale(1.5,1.4);
 }
 
 .browse-txts-container {
   /* background: #b3b3b3; */
-  padding-bottom: 4px;
+  padding: 4px 0;
   border-radius: 10px;
 }
 
@@ -302,10 +303,33 @@ ul.container {
 
 .btn.browse-btn {
   background: #f5f4f4;
-  color: #373232;
-  border: 1px solid #373232;
+  color: #37230f;
+  border: 1px solid #37230f;
+  background: #d9dcba;
   font-weight: bold;
   font-size: inherit;
+}
+
+.font-pick-bar {
+  margin: 0;
+  justify-content: space-evenly;
+  background: #5e4e3f;
+  border: 2px solid #d9dcba;
+  color: #d9dcba;
+  padding: 1px 10px;
+}
+.font-pick-bar li {
+  cursor: pointer;
+}
+
+.pick-times-nr {
+  font-family: 'Times New Roman';
+}
+.pick-arial {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.pick-impact {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 /* TODO: make the browseBar flex wrap on mobile; */

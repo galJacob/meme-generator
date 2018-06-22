@@ -73,7 +73,7 @@ function renderTxtOnCanvas(txt) {
     ctx.textAlign = txt.align;
     var x = getXforAlign(elCanvas.width, txt.align)
     ctx.fillText(txt.str, x, txt.line);
-    ctx.lineWidth = txt.size / 20;
+    ctx.lineWidth = txt.size / 35;
 
     if (txt.bold) ctx.strokeText(txt.str, x, txt.line);
 
@@ -126,8 +126,8 @@ function onPopularImgsMapInput(elInput) {
     addpopularKeyword(keyword);
     displayPopularImgsMap(gPopularImgsMap);
 }
-function showFontMenu(id) {
-    document.querySelector(`.font-pick${id}`).classList.toggle('hide');
+function showFontMenu(idx) {
+    document.querySelector(`.font-pick${idx}`).classList.toggle('hide');
 }
 function onUpdateTxtBy(param, id, type) {
     var elTextarea = document.querySelector(`#textarea${id}`);
@@ -171,12 +171,10 @@ function renderTextarea(idx, line) {
         <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${idx})">C</button>
         <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${idx})">R</button>
         </div>
-        <div class="font-pick font-pick${idx} hide">
-        <label>Choose Font:</label>
-        <ul class="clean-list">
-        <li onclick="onUpdateTxtBy('font', ${idx} ,'Impact')">Impact</li>
-        <li onclick="onUpdateTxtBy('font', ${idx} ,'Arial')">Arial</li>
-        <li onclick="onUpdateTxtBy('font', ${idx} ,'Times New Roman')">Times New Roman</li>
+        <ul class="clean-list font-pick-bar font-pick${idx} hide flex">
+        <li class="pick-impact" onclick="onUpdateTxtBy('font', ${idx} ,'Impact')">Impact</li>
+        <li class="pick-arial" onclick="onUpdateTxtBy('font', ${idx} ,'Arial')">Arial</li>
+        <li class="pick-times-nr" onclick="onUpdateTxtBy('font', ${idx} ,'Times New Roman')">Times N.R.</li>
         </ul>
         </div>
         </div> 
@@ -187,9 +185,9 @@ function renderTextarea(idx, line) {
 
     //assign status
     strHtml =
-        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1})">🡹</button>
+        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1})">⯇</button>
     <span class="show-curr-line">${idx + 1}</span>
-    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1})">🡻</button>`;
+    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1})">⯈</button>`;
 
     var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
