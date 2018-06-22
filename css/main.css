@@ -248,7 +248,7 @@ ul.container {
 }
 
 .modal-content .btn {
-  width: 35px; 
+  width: 30px; 
   height: 26px;
 }
 
@@ -279,6 +279,12 @@ ul.container {
 }
 
 /* Media Query after flex-wrap */
+@media (min-width: 400px){
+  .modal-content .btn {
+    width: 35px;
+    height: 30px;
+  }
+}
 @media (min-width: 944px )
 {
   .modal-content .btn {
