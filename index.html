@@ -62,23 +62,24 @@
 
 
     <!-- Didi -->
-    <div class="modal hide" id="editor-modal">
+    <div class="modal hide flex column space-between" id="editor-modal">
         <button class="return-btn btn" onclick="closeModal()">&times;</button>
-        <div class="modal-content flex">
-
-            <!-- TODO(Didi): add wrap for mobile to make the text editor on column -->
-            <div class="cavas-container">
+        <div class="content-wrapper flex column center-items">
+            <div class="modal-content flex">
+                <!-- TODO(Didi): add wrap for mobile to make the text editor on column -->
                 <canvas id="meme-canvas" class="img-canvas" onclick="handleKey(event)">
                 </canvas>
-            </div>
 
-            <div class="textareas-container flex column center-items">
-                <div class="browse-txts-container flex center-items">
+                <div class="textareas-container flex column center-items">
+                    <div class="browse-txts-container flex center-items">
+                    </div>
+                    <div class="add-line-container flex column" id="add-line">
+                    </div>
                 </div>
-                <div class="add-line-container flex column" id="add-line">
-                </div>
+
             </div>
         </div>
+        <div class="centerer"></div>
 
         <!--Falafel style for textarea: "overflow: hidden;
                 word-wrap: break-word;
