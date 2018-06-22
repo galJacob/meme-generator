@@ -65,6 +65,8 @@ function updateTxtAt(param, id, type) {
 
     case 'bold':
       currTxt.bold = !currTxt.bold;
+      var elBoldBtn = document.querySelector('.ctrl-bold');
+      elBoldBtn.classList.toggle('no-bold');
       break;
 
     case 'right': case 'center': case 'left':
@@ -100,11 +102,6 @@ function getLastIdxTxt(idx) {
 }
 function getCurrId() {
   return gMeme.selectedImgId;
-}
-function getValueByIdx(idx) {
-  var txt = gMeme.txts[idx];
-  if (txt && txt !== undefined) return txt.str;
-  return '';
 }
 function getTxtsLength(){
   return gMeme.txts.length;

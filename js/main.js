@@ -134,21 +134,12 @@ function onUpdateTxtBy(param, id, type) {
     if (!elTextarea.value) return;
     updateTxtAt(param, id, type);
 }
-// gal
 function toggleMenu() {
     var elNav = document.querySelector('nav');
     var elMenuArrow = document.querySelector('.location-menu-arrow');
     elNav.classList.toggle('closed-nav');
     elMenuArrow.classList.toggle('closed-location-menu-arrow');
 }
-// gal
-
-// Didi
-
-// !Didi
-// Change
-
-
 function handleKey(ev) {
     console.log('ev', ev)
     var offsetY = ev.offsetY;
@@ -158,12 +149,13 @@ function renderTextarea(idx, line) {
     var length = getTxtsLength();
     if (idx === -1 || idx > length) return;
     var txt = getLastIdxTxt(idx);
-    var value = txt.str;
+    var str = txt.str;
     var color = txt.color;
-    console.log('value: ', value, 'idx: ', idx);
+    var bold = '';
+    if (!txt.bold) bold = 'no-bold'
 
     var strHtml = `<div class="add-line-container flex column" id="add-line${idx}">
-        <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" placeholder="Enter Text" value="${value}">${value}</textarea>
+        <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" placeholder="Enter Text" value="${str}">${str}</textarea>
         <div class="ctrl-btns-container flex">
         <button class="ctrl-btn btn ctrl-color">
         <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
@@ -174,7 +166,7 @@ function renderTextarea(idx, line) {
         <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', ${idx})">▲</button>
         <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', ${idx})">▼</button>
         
-        <button class="ctrl-btn btn ctrl-bold" onclick="onUpdateTxtBy('bold', ${idx})">B</button>
+        <button class="ctrl-btn btn ctrl-bold ${bold}" onclick="onUpdateTxtBy('bold', ${idx})">B</button>
         <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', ${idx})">L</button>
         <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${idx})">C</button>
         <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${idx})">R</button>
@@ -195,17 +187,16 @@ function renderTextarea(idx, line) {
 
     //assign status
     strHtml =
-        `<button class="btn browse-btn ctrl-btn" onclick="renderTextarea(${idx + 1})">🡹</button>
-    <button class="show-curr-line btn ctrl-btn">${idx+1}</button>
-    <button class="btn browse-btn ctrl-btn" onclick="renderTextarea(${idx - 1})">🡻</button>`;
+        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1})">🡹</button>
+    <span class="show-curr-line">${idx + 1}</span>
+    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1})">🡻</button>`;
 
-    var elBrowseTxtsContainer = document.querySelector('.browseTxts-container');
+    var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
 }
 function onChangeTxtIdx(diff) {
     renderTextarea(id + diff);
 }
-
 function cleanTextareas() {
     var elInputs = document.querySelectorAll('.add-line-container textarea');
     for (var i = 0; i < elInputs.length; i++) {

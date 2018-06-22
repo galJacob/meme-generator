@@ -149,7 +149,7 @@ ul.container {
   position: fixed;
   bottom: 0;
   right: 0;
-  background: url(../img/crazy.jpg) no-repeat center center;
+  background: url(../img/crazy.jpg) no-repeat center center #00050b;
 }
 
 /* suggession for modal changes
@@ -186,7 +186,7 @@ ul.container {
   width: 500px;
   height: auto;
   cursor: crosshair;
-  margin: 10px;
+  margin: 0;
   border: 5px rgb(239, 243, 205) solid;
   border-radius: 5px;
 }
@@ -223,7 +223,7 @@ ul.container {
 } */
 .textareas-container {
   max-width: 100%;
-  margin: 10px;
+  margin: 0 10px 10px 10px;
 }
 
 
@@ -237,35 +237,67 @@ ul.container {
 }
 .add-line-container textarea::placeholder{
   color:#c7c4c4;
+  font-size: inherit;
   }
 
 .ctrl-btns-container {
   background: #b3b3b3;
-  padding: 0 2.5px;
+  /* padding: 0 2.5px; */
+  /* border-radius: 10px; */
 }
 
-
-.btn.ctrl-btn{
-  width: 30px;
+.modal-content .btn {
+  width: 35px; 
   height: 26px;
+}
+
+.btn.ctrl-btn {
   background: #373232;
   color: #f5f4f4;
-  border: 1px solid #f5f4f4;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight:  bold;
+  border: 1px solid #d9d1d1;
+  font-weight: bold;
   font-size: inherit;
 }
 
+.show-curr-line {
+  color: #f5f4f4;
+  font-size: 1.1rem;
+  font-weight: bold;
+  -webkit-text-stroke: 0.25px #373232;
+  padding: 4px 0;
+  margin: 0 12px;
+  text-align: center;
+  align-items: center;
+  transform: scale(1.5,1.2);
+}
+
+.browse-txts-container {
+  /* background: #b3b3b3; */
+  padding-bottom: 4px;
+  border-radius: 10px;
+}
+
+/* Media Query after flex-wrap */
+@media (min-width: 944px )
+{
+  .modal-content .btn {
+    width: 40px;
+    height: 30px;
+  }
+  .img-canvas {
+  margin: 0 10px;
+  }
+}
 .btn.ctrl-btn:first-of-type {
   cursor: default;
 }
 
-.btn.browse-btn{
-  color: white;
-}
-.browseTxts-container span{
-  color: blue;
-  margin: 0 25px;
+.btn.browse-btn {
+  background: #f5f4f4;
+  color: #373232;
+  border: 1px solid #373232;
+  font-weight: bold;
+  font-size: inherit;
 }
 
 /* TODO: make the browseBar flex wrap on mobile; */
@@ -309,5 +341,13 @@ input[type="color"] {
 }
 .wrap {
   flex-wrap: wrap;
+}
+
+.btn.ctrl-btn.bold-true {
+  font-weight: bold;
+}
+
+.btn.ctrl-btn.no-bold {
+  font-weight: normal;
 }
 /* !/Helper */
