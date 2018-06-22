@@ -202,3 +202,8 @@ function cleanTextareas() {
         elInputs[i].value = '';
     }
 }
+function onDownloadImg(link, filename = 'meme.png'){
+    console.log('Download!');
+    link.href = document.querySelector('#meme-canvas').toDataURL();
+    link.download = filename;
+}

@@ -275,7 +275,6 @@ ul.container {
 
 .browse-txts-container {
   /* background: #b3b3b3; */
-  padding: 4px 0;
   border-radius: 10px;
 }
 
@@ -316,6 +315,18 @@ ul.container {
   background: #d9dcba;
   font-weight: bold;
   font-size: inherit;
+}
+
+.action-line-wrapper {
+  width: 100%;
+  padding: 4px 10px;
+}
+.btn.dwnld-btn {
+  background: #299f81;
+}
+.btn.share-btn {
+background: blue;
+color: white
 }
 
 .font-pick-bar {
