@@ -17,8 +17,6 @@ var gMeme = {
   ]
 };
 function assignTxt(txtToAssign) {
-  // gMeme.txts = filterTxtsByTextareaIdx(gMeme.txts, txtToAssign.textareaIdx);
-  // gMeme.txts.unshift(txtToAssign);
   gMeme.txts[txtToAssign.textareaIdx] = txtToAssign;
   setCanvas(gMeme.selectedImgId);
 }
@@ -39,9 +37,9 @@ function getMemeTxts() {
 function updateFontSizeTxt(txt, diff) {
   txt.size += diff;
 }
-function updateTxtAt(param, id, type) {
+function updateTxtAt(param, idx, type) {
   var currTxt = gMeme.txts.find(function (txt) {
-    return txt.textareaIdx === id;
+    return txt.textareaIdx === idx;
   });
   if (!currTxt) return;
 
@@ -103,6 +101,6 @@ function getLastIdxTxt(idx) {
 function getCurrId() {
   return gMeme.selectedImgId;
 }
-function getTxtsLength(){
+function getTxtsLength() {
   return gMeme.txts.length;
 }

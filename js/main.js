@@ -76,7 +76,6 @@ function renderTxtOnCanvas(txt) {
     ctx.lineWidth = txt.size / 35;
 
     if (txt.bold) ctx.strokeText(txt.str, x, txt.line);
-
 }
 function onInpTextarea(elInput) {
     // console.log('elInput', elInput.dataset.idx);
@@ -130,10 +129,10 @@ function onPopularImgsMapInput(elInput) {
 function showFontMenu(idx) {
     document.querySelector(`.font-pick${idx}`).classList.toggle('hide');
 }
-function onUpdateTxtBy(param, id, type) {
-    var elTextarea = document.querySelector(`#textarea${id}`);
+function onUpdateTxtBy(param, idx, type) {
+    var elTextarea = document.querySelector(`#textarea${idx}`);
     if (!elTextarea.value) return;
-    updateTxtAt(param, id, type);
+    updateTxtAt(param, idx, type);
 }
 function toggleMenu() {
     var elNav = document.querySelector('nav');
@@ -193,17 +192,16 @@ function renderTextarea(idx, line) {
     var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
 }
-function onChangeTxtIdx(diff) {
-    renderTextarea(id + diff);
-}
 function cleanTextareas() {
     var elInputs = document.querySelectorAll('.add-line-container textarea');
     for (var i = 0; i < elInputs.length; i++) {
         elInputs[i].value = '';
     }
 }
-function onDownloadImg(link, filename = 'meme.png'){
+function onDownloadImg(elLink, filename = 'meme.png') {
     console.log('Download!');
-    link.href = document.querySelector('#meme-canvas').toDataURL();
-    link.download = filename;
+    // TO Check
+    var idx = document.querySelector('.add-line-container textarea').dataset.idx;
+    elLink.href = document.querySelector('#meme-canvas').toDataURL();
+    elLink.download = filename;
 }
