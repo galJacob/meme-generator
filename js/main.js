@@ -33,7 +33,7 @@ function openModal(id) {
     //clean Modal Textareas by NodeList
     cleanTextareas();
     // getActiveLastTxt(id);
-    firstAdjust(id)
+    resetMemeModel(id)
     renderTextarea(0, id);
     // setCanvas(id);
     elModal.classList.remove('hide');
@@ -48,7 +48,6 @@ function closeModal() {
 }
 function setCanvas(id, txts, activeTxt = false) {
     var elCanvas = document.querySelector('#meme-canvas');
-console.log('canvas id', id)
     var img = new Image();
     img.onload = function () {
         elCanvas.width = img.width;
@@ -57,8 +56,10 @@ console.log('canvas id', id)
         // ctx.fillStyle = 'whitesmoke';
         // ctx.fillRect(0, 0, elCanvas.width, elCanvas.height);
         ctx.drawImage(img, 0, 0);
+        console.log('txts:', txts)
         if (txts.length > 0) renderTxtsOnCanvas(txts);
-        if (activeTxt) renderFragement(activeTxt);
+        if (activeTxt) renderFrag(activeTxt.line, activeTxt.size)
+
     };
     img.src = `meme-imgs/${id}.jpg`;
 }
@@ -81,13 +82,13 @@ function renderTxtOnCanvas(txt) {
 
     if (txt.bold) ctx.strokeText(txt.str, x, txt.line);
 }
-function onInpTextarea(elInput) {
+function onInpTextarea(elTextarea) {
     // console.log('elInput', elInput.dataset.idx);
-    var str = elInput.value;
+    var str = elTextarea.value;
     // TODO: more inputs to send to obj
-    var textareaIdx = +elInput.dataset.idx;
+    var textareaIdx = +elTextarea.dataset.idx;
     // txtBeenBefore(elInput);
-    var lastIdxTxt = getActiveLastTxt(textareaIdx);
+    var lastIdxTxt = getActiveTextareaLastTxt(textareaIdx);
     var line = lastIdxTxt.line;
     var size = lastIdxTxt.size;
     var align = lastIdxTxt.align;
@@ -146,15 +147,15 @@ function handleKey(ev) {
 function renderTextarea(idx, id) {
     var length = getTxtsLength();
     if (idx === -1 || idx > length) return;
-    console.log('idx',idx,'id:', id)
-    var txt = getActiveLastTxt(idx); //
+    console.log('idx', idx, 'id:', id)
+    var txt = getActiveTextareaLastTxt(idx); //
     var str = txt.str;
     var color = txt.color;
     var bold = '';
     if (!txt.bold) bold = 'no-bold'
 
     var strHtml = `<div class="add-line-container flex column" id="add-line${idx}">
-    <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" placeholder="Enter Text" value="${str}">${str}</textarea>
+    <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" onfocus="renderFrag(${txt.line}, ${txt.size})" placeholder="Enter Text" value="${str}">${str}</textarea>
     <div class="ctrl-btns-container flex">
     <button class="ctrl-btn btn ctrl-color">
     <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
@@ -184,7 +185,7 @@ function renderTextarea(idx, id) {
 
     //assign status
     strHtml =
-        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1}, ${id})">⯇</button>
+        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1}, ${id});">⯇</button>
     <span class="show-curr-line">${idx + 1}</span>
     <button class="btn browse-btn" onclick="renderTextarea(${idx + 1}, ${id})">⯈</button>`;
 
@@ -194,15 +195,15 @@ function renderTextarea(idx, id) {
     setCanvas(id, txts);
 }
 function cleanTextareas() {
-    var elInputs = document.querySelectorAll('.add-line-container textarea');
-    for (var i = 0; i < elInputs.length; i++) {
-        elInputs[i].value = '';
+    var elTextareas = document.querySelectorAll('.add-line-container textarea');
+    for (var i = 0; i < elTextareas.length; i++) {
+        elTextareas[i].value = '';
     }
 }
 function onDownloadImg(elLink, filename = 'meme.png') {
     console.log('Download!');
     // Add Clear Interval for fragement
-    // var idx = document.querySelector('.add-line-container textarea').dataset.idx;
+    setCanvas(getCurrId(), getMemeTxts())
     elLink.href = document.querySelector('#meme-canvas').toDataURL();
     elLink.download = filename;
 }
@@ -212,8 +213,8 @@ function toggleMenu() {
     elNav.classList.toggle('closed-nav');
     elMenuArrow.classList.toggle('closed-menu-arrow');
 }
-function renderFragement(activeTxt) {
+function renderFrag(line, size) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
-    console.log('activeTxt: ', activeTxt)
+    ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
 }

@@ -11,13 +11,13 @@ function assignTxt(txtToAssign) {
   //added textareaidx:
   setCanvas(gMeme.selectedImgId, gMeme.txts, txtToAssign);
 }
-function firstAdjust(id){
+function resetMemeModel(id){
   gMeme = {
     selectedImgId: id,
     txts: []
   };
 }
-function getActiveLastTxt(idx) {
+function getActiveTextareaLastTxt(idx) {
   var defaultTxt = {
     str: '',
     line: 100,
