@@ -38,6 +38,14 @@ header{
   flex-direction: column;
 }
 
+.fa-sort-down::after{
+}
+.arrow-down::after{
+  content:"\f0dd";
+
+}
+
+
 .closed-menu-arrow{
   color: white;
 }
@@ -50,7 +58,9 @@ nav{
     position: relative;
     transition: all 0.5s;
     align-items: center;
-    padding: 0 15%;
+    padding: 0 20%;
+}
+nav::after{
 }
 nav a{
     text-decoration: none;
@@ -164,8 +174,64 @@ text-align: center;
 .details-container h1,h2{
   margin-top: 1px;
 }
+.form-container{
+  flex-flow: column nowrap;
+  justify-content: left;
+  grid-area: 2 /3 / 11/ 8;
+}
+.contact-details-container{
+grid-area: 3/8 /6/ 10;
+padding-top: 20px;
+padding-right: 40px;
+}
+.contact-icon{
+  color: #2ab499;
+}
+.contact-icon span{
+  color: #a1a1a1;
+  font-size: 0.7rem;
+}
+.icons-container{
+  grid-area: 6/8/7/9;
+}
+form{
+flex-direction: column;
+}
+input[type="submit"]{
+  background-color:#2ab499;
+  width: 70px;
+  height: 30px;
+  color: white;
+  font-size: 0.6rem;
+  cursor: pointer;
+}
+form *{
+  color: white;
+  margin-bottom: 20px;
+  background-color: #444444;
+  border: 0;
+  padding: 10px;
+}
+form ::placeholder{
+  font-family: arvo;
+  font-size: 0.7rem;
+  color: white;
+  opacity: 0.5;
+}
+.getInTouch-container h1{
+  margin-bottom: 0;
+  color: #a1a1a1;
+  text-align: left;
+}
+.getInTouch-container p{
+  color: #a1a1a1;
+}
 .getInTouch-container{
   height: 600px;
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  grid-template-rows: repeat(10,1fr);
+  grid-gap: 20px;
   background-color: #2f2f2f;
 }
 .stylish-hr{

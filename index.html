@@ -16,6 +16,7 @@
         <nav class="flex">
             <a href="#editor-modal">editor modal </a>
             <a href="#get-in-touch">get in touch</a>
+           <div class="arrow-down">&#9660;</div>
             <i onclick="toggleMenu()" class="fas fa-sort-down fa-9x menu-arrow"></i>
             <a href="#about">about</a>
             <a href="#popular-imgs">popular imgs</a>
@@ -71,9 +72,31 @@
                     laudantium sed molestias? Vero pariatur
                 </p>
             </div>
+            <!-- later:fix hr doesnt match bug -->
             <hr class="stylish-hr">
         </div>
         <div class="getInTouch-container" id="get-in-touch">
+            <div class="form-container flex">
+                <h1>Get In Touch</h1>
+                <p>In order to get in touch use the contact form below:</p>
+                <form class="  flex" action="">
+                    <input type="text" placeholder="Name(Required)">
+                    <input type="text" placeholder="Email(Required)">
+                    <input type="text" placeholder="Subject">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Write your message here..."></textarea>
+                    <input type="submit" value="SEND">
+                </form>
+            </div>
+            <div class="contact-details-container">
+                <p>
+                    <span style="color: white;">Lorem ipsum: &nbsp; </span>dolor sit amet, consectetur adipisicing elit. nam magnam incidunt, delectus
+                    velit sint ipsam laudantium sed molestias? Vero pariatur</p>
+            </div>
+            <div class="icons-container">
+            <i class="fas fa-map-marker fa-1x contact-icon"><span>&nbsp; Habonim 4 st. R.G</span></i>
+            <i class="fas fa-phone fa-1x contact-icon"><span>&nbsp;+ 3528 331 86 35</span></i>
+            <i class="fas fa-envelope fa-1x contact-icon"><span>&nbsp;info@hexalcorp.com</span></i>
+            </div>
         </div>
     </footer>
 
@@ -93,7 +116,9 @@
             <div class="textareas-container flex column center-items">
                 <div class="action-line-wrapper flex space-between">
 
-                   <button class="dwnld-btn btn" ><a onclick="onDownloadImg(this, 'meme.png')">⇩</a></button>
+                    <button class="dwnld-btn btn">
+                        <a onclick="onDownloadImg(this, 'meme.png')">⇩</a>
+                    </button>
                     <div class="browse-txts-container flex center-items"></div>
                     <button class="share-btn btn">F</button>
                 </div>
