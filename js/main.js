@@ -48,7 +48,7 @@ function closeModal() {
 }
 function setCanvas(id, txts, activeTxt = false) {
     var elCanvas = document.querySelector('#meme-canvas');
-console.log('canvas id', id)
+    console.log('canvas id', id)
     var img = new Image();
     img.onload = function () {
         elCanvas.width = img.width;
@@ -146,7 +146,7 @@ function handleKey(ev) {
 function renderTextarea(idx, id) {
     var length = getTxtsLength();
     if (idx === -1 || idx > length) return;
-    console.log('idx',idx,'id:', id)
+    console.log('idx', idx, 'id:', id)
     var txt = getActiveLastTxt(idx); //
     var str = txt.str;
     var color = txt.color;
@@ -207,11 +207,15 @@ function onDownloadImg(elLink, filename = 'meme.png') {
     elLink.download = filename;
 }
 function toggleMenu() {
-    var elNav = document.querySelector('nav');
-    var elMenuArrow = document.querySelector('.menu-arrow');
-    elNav.classList.toggle('closed-nav');
-    elMenuArrow.classList.toggle('closed-menu-arrow');
+    var elNav = document.querySelector('header');
+    var elMenuArrow = document.querySelector('.arrows-container');
+    elNav.classList.toggle('open-header');
+    elMenuArrow.classList.toggle('.closed-arrows-container::after');
 }
+// function displayPopularWords() {
+//     var pageWidth = document.body.clientWidth;
+//     if()
+// }
 function renderFragement(activeTxt) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
