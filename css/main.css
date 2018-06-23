@@ -348,8 +348,8 @@ form input{
 .form-container{
   padding: 10%;
 }
-.contact-details-container{
-  padding: 0;
+.contact-details-container,.icons-container{
+  padding: 0 10%;
 }
 
 
