@@ -32,22 +32,23 @@ function openModal(id) {
     var elModal = document.querySelector('#editor-modal');
     //clean Modal Textareas by NodeList
     cleanTextareas();
-    setCanvas(id);
-    elModal.classList.toggle('hide');
-    chooseMeme(id);
-    renderTextarea(0);
+    // getActiveLastTxt(id);
+    firstAdjust(id)
+    renderTextarea(0, id);
+    // setCanvas(id);
+    elModal.classList.remove('hide');
     var elBody = document.querySelector('body');
-    elBody.classList.toggle('no-scroll');
+    elBody.classList.add('no-scroll');
 }
 function closeModal() {
     var elModal = document.querySelector('#editor-modal');
-    elModal.classList.toggle('hide');
+    elModal.classList.add('hide');
     var elBody = document.querySelector('body');
-    elBody.classList.toggle('no-scroll');
+    elBody.classList.remove('no-scroll');
 }
-function setCanvas(id) {
+function setCanvas(id, txts, activeTxt = false) {
     var elCanvas = document.querySelector('#meme-canvas');
-
+console.log('canvas id', id)
     var img = new Image();
     img.onload = function () {
         elCanvas.width = img.width;
@@ -56,9 +57,8 @@ function setCanvas(id) {
         // ctx.fillStyle = 'whitesmoke';
         // ctx.fillRect(0, 0, elCanvas.width, elCanvas.height);
         ctx.drawImage(img, 0, 0);
-
-        var txts = getMemeTxts();
-        renderTxtsOnCanvas(txts);
+        if (txts.length > 0) renderTxtsOnCanvas(txts);
+        if (activeTxt) renderFragement(activeTxt);
     };
     img.src = `meme-imgs/${id}.jpg`;
 }
@@ -87,7 +87,7 @@ function onInpTextarea(elInput) {
     // TODO: more inputs to send to obj
     var textareaIdx = +elInput.dataset.idx;
     // txtBeenBefore(elInput);
-    var lastIdxTxt = getLastIdxTxt(textareaIdx);
+    var lastIdxTxt = getActiveLastTxt(textareaIdx);
     var line = lastIdxTxt.line;
     var size = lastIdxTxt.size;
     var align = lastIdxTxt.align;
@@ -127,7 +127,7 @@ function onPopularImgsMapInput(elInput) {
     var input = elInput.value.toLowerCase();
     gPopularImgsMap = loadPopularMapFromStorage();
     var keyword = getImgKeywordByinput(input);
-    addpopularKeyword(keyword);
+    addPopKeyword(keyword);
     displayPopularImgsMap(gPopularImgsMap);
 }
 function showFontMenu(idx) {
@@ -138,63 +138,60 @@ function onUpdateTxtBy(param, idx, type) {
     if (!elTextarea.value) return;
     updateTxtAt(param, idx, type);
 }
-function toggleMenu() {
-    var elNav = document.querySelector('nav');
-    var elMenuArrow = document.querySelector('.menu-arrow');
-    elNav.classList.toggle('closed-nav');
-    elMenuArrow.classList.toggle('closed-menu-arrow');
-}
 function handleKey(ev) {
     console.log('ev', ev)
     var offsetY = ev.offsetY;
     // updateLineAtCurrTxt();
 }
-function renderTextarea(idx, line) {
+function renderTextarea(idx, id) {
     var length = getTxtsLength();
     if (idx === -1 || idx > length) return;
-    var txt = getLastIdxTxt(idx);
+    console.log('idx',idx,'id:', id)
+    var txt = getActiveLastTxt(idx); //
     var str = txt.str;
     var color = txt.color;
     var bold = '';
     if (!txt.bold) bold = 'no-bold'
 
     var strHtml = `<div class="add-line-container flex column" id="add-line${idx}">
-        <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" placeholder="Enter Text" value="${str}">${str}</textarea>
-        <div class="ctrl-btns-container flex">
-        <button class="ctrl-btn btn ctrl-color">
-        <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
-        </button>
-        <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', ${idx})">+</button>
-        <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', ${idx})">-</button>
-        <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(${idx})">A</button>
-        <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', ${idx})">▲</button>
-        <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', ${idx})">▼</button>
-        
-        <button class="ctrl-btn btn ctrl-bold ${bold}" onclick="onUpdateTxtBy('bold', ${idx})">B</button>
-        <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', ${idx})">L</button>
-        <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${idx})">C</button>
-        <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${idx})">R</button>
-        </div>
-        <ul class="clean-list font-pick-bar font-pick${idx} hide flex">
-        <li class="pick-impact" onclick="onUpdateTxtBy('font', ${idx} ,'Impact')">Impact</li>
-        <li class="pick-arial" onclick="onUpdateTxtBy('font', ${idx} ,'Arial')">Arial</li>
-        <li class="pick-times-nr" onclick="onUpdateTxtBy('font', ${idx} ,'Times New Roman')">Times N.R.</li>
-        </ul>
-        </div>
-        </div> 
-        `;
+    <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" placeholder="Enter Text" value="${str}">${str}</textarea>
+    <div class="ctrl-btns-container flex">
+    <button class="ctrl-btn btn ctrl-color">
+    <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
+    </button>
+    <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', ${idx})">+</button>
+    <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', ${idx})">-</button>
+    <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(${idx})">A</button>
+    <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', ${idx})">▲</button>
+    <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', ${idx})">▼</button>
+    
+    <button class="ctrl-btn btn ctrl-bold ${bold}" onclick="onUpdateTxtBy('bold', ${idx})">B</button>
+    <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', ${idx})">L</button>
+    <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${idx})">C</button>
+    <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${idx})">R</button>
+    </div>
+    <ul class="clean-list font-pick-bar font-pick${idx} hide flex">
+    <li class="pick-impact" onclick="onUpdateTxtBy('font', ${idx} ,'Impact')">Impact</li>
+    <li class="pick-arial" onclick="onUpdateTxtBy('font', ${idx} ,'Arial')">Arial</li>
+    <li class="pick-times-nr" onclick="onUpdateTxtBy('font', ${idx} ,'Times New Roman')">Times N.R.</li>
+    </ul>
+    </div>
+    </div> 
+    `;
 
     var elTextareaContainer = document.querySelector('.add-line-container');
     elTextareaContainer.innerHTML = strHtml;
 
     //assign status
     strHtml =
-        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1})">⯇</button>
+        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1}, ${id})">⯇</button>
     <span class="show-curr-line">${idx + 1}</span>
-    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1})">⯈</button>`;
+    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1}, ${id})">⯈</button>`;
 
     var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
+    var txts = getMemeTxts();
+    setCanvas(id, txts);
 }
 function cleanTextareas() {
     var elInputs = document.querySelectorAll('.add-line-container textarea');
@@ -208,4 +205,15 @@ function onDownloadImg(elLink, filename = 'meme.png') {
     // var idx = document.querySelector('.add-line-container textarea').dataset.idx;
     elLink.href = document.querySelector('#meme-canvas').toDataURL();
     elLink.download = filename;
+}
+function toggleMenu() {
+    var elNav = document.querySelector('nav');
+    var elMenuArrow = document.querySelector('.menu-arrow');
+    elNav.classList.toggle('closed-nav');
+    elMenuArrow.classList.toggle('closed-menu-arrow');
+}
+function renderFragement(activeTxt) {
+    var elCanvas = document.querySelector('#meme-canvas');
+    var ctx = elCanvas.getContext('2d');
+    console.log('activeTxt: ', activeTxt)
 }

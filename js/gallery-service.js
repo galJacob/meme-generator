@@ -76,7 +76,7 @@ function getImgKeywordByinput(input) {
     return matchedKeyword;
 }
 
-function addpopularKeyword(keyword) {
+function addPopKeyword(keyword) {
     if (keyword && gPopularWordCounter < 28) {
         gPopularImgsMap[keyword] ? gPopularImgsMap[keyword]++ : gPopularImgsMap[keyword] = 1;
         checkMaxLimitFontSize(keyword);

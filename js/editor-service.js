@@ -3,28 +3,34 @@
 
 var gMeme = {
   selectedImgId: 5,
-  txts: [
-    {
-      str: 'I never eat Falafel',
-      line: 100,
-      size: 20,
-      align: 'left',
-      color: 'red',
-      font: 'Impact',
-      bold: true,
-      textareaIdx: 1
-    }
-  ]
+  txts: []
 };
 function assignTxt(txtToAssign) {
+  // var activeTxtIdx = txtToAssign.textareaIdx
   gMeme.txts[txtToAssign.textareaIdx] = txtToAssign;
-  setCanvas(gMeme.selectedImgId);
+  //added textareaidx:
+  setCanvas(gMeme.selectedImgId, gMeme.txts, txtToAssign);
 }
-function chooseMeme(id) {
+function firstAdjust(id){
   gMeme = {
     selectedImgId: id,
     txts: []
   };
+}
+function getActiveLastTxt(idx) {
+  var defaultTxt = {
+    str: '',
+    line: 100,
+    size: 30,
+    align: 'center',
+    color: '#ffffff',
+    font: 'Impact',
+    bold: true,
+    textareaIdx: 0
+  };
+  if (!gMeme.txts[idx]) gMeme.txts[idx] = defaultTxt;
+
+  return gMeme.txts[idx];
 }
 function filterTxtsByTextareaIdx(txts, textareaIdx) {
   return txts.filter(function (txt) {
@@ -38,9 +44,7 @@ function updateFontSizeTxt(txt, diff) {
   txt.size += diff;
 }
 function updateTxtAt(param, idx, type) {
-  var currTxt = gMeme.txts.find(function (txt) {
-    return txt.textareaIdx === idx;
-  });
+  var currTxt = gMeme.txts[idx];
   if (!currTxt) return;
 
   switch (param) {
@@ -82,21 +86,7 @@ function updateTxtAt(param, idx, type) {
     default:
       break;
   }
-  setCanvas(gMeme.selectedImgId);
-}
-function getLastIdxTxt(idx) {
-  var txt = gMeme.txts[idx];
-  if (txt && txt !== undefined) return txt;
-  return {
-    str: '',
-    line: 100,
-    size: 56,
-    align: 'center',
-    color: '#ffffff',
-    font: 'Impact',
-    bold: true,
-    textareaIdx: idx
-  };
+  setCanvas(gMeme.selectedImgId, gMeme.txts, currTxt);
 }
 function getCurrId() {
   return gMeme.selectedImgId;
@@ -104,3 +94,18 @@ function getCurrId() {
 function getTxtsLength() {
   return gMeme.txts.length;
 }
+
+// function getActiveIdxLastTxt(idx) {
+//   var txt = gMeme.txts[idx];
+//   if (txt && txt !== undefined) return txt;
+//   return {
+//     str: '',
+//     line: 100,
+//     size: 56,
+//     align: 'center',
+//     color: '#ffffff',
+//     font: 'Impact',
+//     bold: true,
+//     textareaIdx: idx
+//   };
+// }
