@@ -203,9 +203,13 @@ function cleanTextareas() {
 function onDownloadImg(elLink, filename = 'meme.png') {
     console.log('Download!');
     // Add Clear Interval for fragement
-    setCanvas(getCurrId(), getMemeTxts())
-    elLink.href = document.querySelector('#meme-canvas').toDataURL();
-    elLink.download = filename;
+    setCanvas(getCurrId(), getMemeTxts());
+    //TODO: fix the a-syncronization
+    setTimeout(function () {
+        elLink.href = document.querySelector('#meme-canvas').toDataURL();
+        elLink.download = filename;
+    }, 1);
+
 }
 function toggleMenu() {
     var elNav = document.querySelector('nav');
