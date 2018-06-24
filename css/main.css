@@ -13,6 +13,13 @@ body {
   src: url('../fonts/Digitalt.otf');
 }
 
+.head-title{
+  color: #1d584d;
+  font-weight: bold;
+  font-size: 3.2rem;
+  font-family: 'Fira Sans', sans-serif;
+}
+
 .upload-container{
     display: flex;
     flex-flow: column wrap;
@@ -32,7 +39,8 @@ main{
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 70px;
+  padding-bottom: 70px;
+  background: #eaf9f6;
 }
 /* gal */
 header{
@@ -417,7 +425,17 @@ form input{
   position: fixed;
   bottom: 0;
   right: 0;
-  background: url(../img/parquet.jpg) repeat center center #00050b;
+  background: url('../img/crazy.jpg') repeat center center #00050b;
+  transition: all 1s;
+}
+
+.modal.hide {
+  bottom: -100%;
+  display: block;
+  widows: 100%;
+  height: 100%;
+
+
 }
 
 /* suggession for modal changes

@@ -201,7 +201,7 @@ function toggleMenu() {
     var elNav = document.querySelector('header');
     elNav.classList.toggle('open-header');
 }
-function scrollToElement(el) {
+function scrollToEl(el) {
     var elToScrollTo = document.getElementById(el.innerText)
     console.log(el.innerText);
     console.log(elToScrollTo);
@@ -223,8 +223,8 @@ function renderFrag(idx) {
     var size = txt.size;
     ctx.strokeRect(15, line - size, ctx.canvas.width - 25, size + 13)
 }
-function fbFeature(elFBBtn) {
-    elFBBtn.classList.add('hide');
+function fbFeature(elFbBtn) {
+    elFbBtn.classList.add('hide');
     document.querySelector('.share-container').classList.remove('hide');
 }
 function handleClickOnCanvas(ev) {
