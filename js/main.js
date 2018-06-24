@@ -31,11 +31,11 @@ function renderImgs(imgs) {
 function openModal(id) {
     var elModal = document.querySelector('#editor-modal');
     //clean Modal Textareas by NodeList
-    cleanTextareas();
+    // cleanTextareas();
     // getActiveLastTxt(id);
     resetMemeModel(id)
     renderTextarea(0, id);
-    // setCanvas(id);
+    setCanvas(id);
     elModal.classList.remove('hide');
     var elBody = document.querySelector('body');
     elBody.classList.add('no-scroll');
@@ -46,7 +46,7 @@ function closeModal() {
     var elBody = document.querySelector('body');
     elBody.classList.remove('no-scroll');
 }
-function setCanvas(id, txts, activeTxt = false) {
+function setCanvas(id, txts = [], activeTxt = false) {
     var elCanvas = document.querySelector('#meme-canvas');
     var img = new Image();
     img.onload = function () {
@@ -58,7 +58,7 @@ function setCanvas(id, txts, activeTxt = false) {
         ctx.drawImage(img, 0, 0);
         console.log('txts:', txts)
         if (txts.length > 0) renderTxtsOnCanvas(txts);
-        if (activeTxt) renderFrag(activeTxt.line, activeTxt.size)
+        // if (activeTxt) renderFrag(activeTxt.line, activeTxt.size)
 
     };
     img.src = `meme-imgs/${id}.jpg`;
@@ -191,8 +191,8 @@ function renderTextarea(idx, id) {
 
     var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
-    var txts = getMemeTxts();
-    setCanvas(id, txts);
+    // var txts = getMemeTxts();
+    // setCanvas(id, txts);
 }
 function cleanTextareas() {
     var elTextareas = document.querySelectorAll('.add-line-container textarea');
@@ -221,4 +221,8 @@ function renderFrag(line, size) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
     ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
+}
+function clearFrag(){
+    console.log('clear frag');
+    
 }
