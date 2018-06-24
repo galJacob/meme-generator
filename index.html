@@ -15,14 +15,14 @@
     <header class="flex">
         <!-- <button class="mobile-btn"></button> -->
         <nav class="flex">
-            <a href="#editor-modal">editor modal </a>
-            <a href="#get-in-touch">get in touch</a>
+            <a onclick="scrollToElement(this)">editor modal </a>
+            <a onclick="scrollToElement(this)">get in touch</a>
             <div class="arrows-container">
                 <i onclick="toggleMenu()" class="fas fa-sort-down fa-8x menu-arrow"> </i>
                 <!-- <i onclick="toggleMenu()" class="fas fa-angle-double-down fa-4x"></i> -->
             </div>
-            <a href="#about">about</a>
-            <a href="#popular-imgs">popular searches</a>
+            <a onclick="scrollToElement(this)">about</a>
+            <a onclick="scrollToElement(this)">popular searches</a>
         </nav>
 
         <!-- uploading a file,for later: -->
@@ -53,7 +53,7 @@
             <ul class="clean-list container">
             </ul>
         </div>
-        <div id="popular-imgs" class="popular-imgs-container flex">
+        <div id="popular searches" class="popular-searches-container flex">
         </div>
     </main>
     <footer>
@@ -79,16 +79,17 @@
             <!-- later:fix hr doesnt match bug -->
             <hr class="stylish-hr">
         </div>
-        <div class="getInTouch-container" id="get-in-touch">
+        <div class="getInTouch-container" id="get in touch">
             <div class="form-container flex">
                 <h1>Get In Touch</h1>
                 <p>In order to get in touch use the contact form below:</p>
                 <form class="  flex" action="">
-                    <input type="text" placeholder="Name(Required)">
-                    <input type="text" placeholder="Email(Required)">
-                    <input type="text" placeholder="Subject">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Write your message here..."></textarea>
-                    <input type="submit" value="SEND">
+                    <input class="name-of-contact" type="text" placeholder="Name(Required)" value="">
+                    <input class="e-mail" type="text" placeholder="Email(Required)" value="">
+                    <input class="subject" type="text" placeholder="Subject" value="">
+                    <textarea class="message" name="" id="" cols="30" rows="10" placeholder="Write your message here..." value=""></textarea>
+                    <button onclick="submitDetails()" class="submit-btn">SEND</button>
+                    <!-- <input type="submit" value="SEND"> -->
                 </form>
             </div>
             <div class="contact-details-container">

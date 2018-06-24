@@ -3,8 +3,8 @@
 var gImgs = [];
 var MAP_KEY = 'popular imgs';
 var gPopularImgsMap;
-var gPopularWordCounter = 0;
 var gCanvasImg;
+var MY_EMAIL = 'joojonogal2@gmail.com';
 
 function init() {
     createImgs();
@@ -35,7 +35,7 @@ function openModal(id) {
     // cleanTextareas();
     // getActiveLastTxt(id);
     resetMemeModel(id)
-    renderTextarea(0, id);
+    renderTextarea(0);
     // setCanvas(id);
     initCanvas(id);
     elModal.classList.remove('hide');
@@ -118,11 +118,10 @@ function renderImgsByInput(elInput) {
     renderImgs(sortedImgs);
 }
 function displayPopularImgsMap(popularImgsMap) {
-    var elPopularContainer = document.querySelector('.popular-imgs-container');
+    var elPopularContainer = document.querySelector('.popular-searches-container');
     var strHtml = '<h1>popular searches:</h1> ';
     for (var prop in popularImgsMap) {
-        strHtml += `<a style="font-size:${10 * popularImgsMap[prop]}px;"href="">&nbsp;${prop}</a> `;
-        gPopularWordCounter += popularImgsMap[prop];
+        strHtml += `<a style="font-size:${0.4 * popularImgsMap[prop]}em;"href="">&nbsp;${prop}</a> `;
     }
     elPopularContainer.innerHTML = strHtml;
     // console.log(gPopularImgsMap);
@@ -145,13 +144,17 @@ function onUpdateTxtBy(param, idx, type) {
 }
 function handleKey(ev) {
     console.log('ev', ev)
-    var offsetY = ev.offsetY;
+    var y = ev.offsetY;
+    var x = ev.offsetX;
+    // ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
+    // ctx.strokeRect(x,y,w,h)
+    if (y >= line && <= size + 13) renderTextarea(idx);
+
     // updateLineAtCurrTxt();
 }
-function renderTextarea(idx, id) {
+function renderTextarea(idx) {
     var length = getTxtsLength();
     if (idx === -1 || idx > length) return;
-    console.log('idx', idx, 'id:', id)
     var txt = getActiveTextareaLastTxt(idx); //
     var str = txt.str;
     var color = txt.color;
@@ -189,9 +192,9 @@ function renderTextarea(idx, id) {
 
     //assign status
     strHtml =
-        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1}, ${id});">⯇</button>
+        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1});">⯇</button>
     <span class="show-curr-line">${idx + 1}</span>
-    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1}, ${id})">⯈</button>`;
+    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1})">⯈</button>`;
 
     var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
@@ -210,9 +213,21 @@ function onDownloadImg(elLink, filename = 'meme.png') {
 }
 function toggleMenu() {
     var elNav = document.querySelector('header');
-    var elMenuArrow = document.querySelector('.arrows-container');
     elNav.classList.toggle('open-header');
-    elMenuArrow.classList.toggle('.closed-arrows-container::after');
+}
+function scrollToElement(el) {
+    var elToScrollTo = document.getElementById(el.innerText)
+    console.log(el.innerText);
+    console.log(elToScrollTo);
+    elToScrollTo.scrollIntoView({ behavior: 'smooth' });
+}
+function submitDetails() {
+    var contactName = document.querySelector('.name-of-contact').value;
+    var mailAddress = document.querySelector('.e-mail').value;
+    var subject = document.querySelector('.subject').value;
+    var message = document.querySelector('.message').value;
+    var linkStr = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_EMAIL}&su=${subject}&body=${message}`;
+    window.location.assign(linkStr);
 }
 // function displayPopularWords() {
 //     var pageWidth = document.body.clientWidth;
@@ -225,5 +240,5 @@ function renderFrag(idx) {
     var txt = getMemeTxts()[idx];
     var line = txt.line;
     var size = txt.size;
-    ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
+    ctx.strokeRect(15, line - size, ctx.canvas.width - 25, size + 13)
 }
