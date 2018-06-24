@@ -6,7 +6,6 @@ function sliceFromStrByIdx(idx, word) {
     }
     return slicedWord;
 }
-
 function savePopularMapToStorage(popularImgsMap) {
     localStorage.setItem(MAP_KEY, JSON.stringify(popularImgsMap));
 }

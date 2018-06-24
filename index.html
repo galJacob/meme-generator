@@ -36,16 +36,18 @@
 
     <main class="flex">
         <!-- Gal -->
+        <h1>
+            <b>search for a meme!</b>
+        </h1>
         <div class="input-container flex">
-            <h2>
-                <b>search for a meme!</b>
-            </h2>
             <!-- find a use for this button: -->
             <input type="text" list="words" value="" oninput="renderImgsByInput(this),onPopularImgsMapInput(this)">
             <datalist id="words" class="popular-list">
                 <option value="trump">
                     <option value="success">
                         <option value="racist">
+                            <option value="dog">
+                                <option value="cat">
             </datalist>
             </input>
         </div>
@@ -89,7 +91,6 @@
                     <input class="subject" type="text" placeholder="Subject" value="">
                     <textarea class="message" name="" id="" cols="30" rows="10" placeholder="Write your message here..." value=""></textarea>
                     <button onclick="submitDetails()" class="submit-btn">SEND</button>
-                    <!-- <input type="submit" value="SEND"> -->
                 </form>
             </div>
             <div class="contact-details-container">

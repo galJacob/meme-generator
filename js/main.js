@@ -117,7 +117,7 @@ function displayPopularImgsMap(popularImgsMap) {
     var elPopularContainer = document.querySelector('.popular-searches-container');
     var strHtml = '<h1>popular searches:</h1> ';
     for (var prop in popularImgsMap) {
-        strHtml += `<a style="font-size:${0.4 * popularImgsMap[prop]}em;"href="">&nbsp;${prop}</a> `;
+        strHtml += `<a style="font-size:${0.4 * popularImgsMap[prop]}em;" href="">&nbsp;${prop}</a> `;
     }
     elPopularContainer.innerHTML = strHtml;
     // console.log(gPopularImgsMap);
@@ -221,18 +221,13 @@ function scrollToElement(el) {
     elToScrollTo.scrollIntoView({ behavior: 'smooth' });
 }
 function submitDetails() {
-    var contactName = document.querySelector('.name-of-contact').value;
-    var mailAddress = document.querySelector('.e-mail').value;
+    // var contactName = document.querySelector('.name-of-contact').value; , not necessery
+    // var mailAddress = document.querySelector('.e-mail').value; , not necessery
     var subject = document.querySelector('.subject').value;
     var message = document.querySelector('.message').value;
     var linkStr = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_EMAIL}&su=${subject}&body=${message}`;
-    window.location.assign(linkStr);
-}
-// function displayPopularWords() {
-//     var pageWidth = document.body.clientWidth;
-//     if()
-// }
-
+    window.open(linkStr);
+}   
 // function renderFrag(line, size) {?
 function renderFragement(activeTxt) {
     var elCanvas = document.querySelector('#meme-canvas');
