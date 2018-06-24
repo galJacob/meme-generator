@@ -89,7 +89,7 @@ h1{
   box-shadow: 0 0 6px rgb(13, 133, 167,1);
 }
 
-.popular-imgs-container{
+.popular-searches-container{
     color: white;
     background-color: #2f2f2f;
     flex-wrap: wrap;
@@ -97,8 +97,10 @@ h1{
     margin: 10px auto;
     height:200px;
     border-radius: 10px;
+    font-size: 20px;
+    overflow: hidden;
 }
-.popular-imgs-container a{
+.popular-searches-container a{
     text-decoration: none;
     color: white;
 }
@@ -185,13 +187,13 @@ padding-right: 40px;
   color: #a1a1a1;
   font-size: 0.7rem;
 }
-.icons-container{
-  grid-area: 6/8/7/9;
+.icons-container {
+  grid-area: 7/8/7/9;
 }
 form{
 flex-direction: column;
 }
-input[type="submit"]{
+.submit-btn{
   background-color:#2ab499;
   width: 70px;
   height: 30px;
@@ -271,16 +273,13 @@ ul.container {
   background-position: center center;
 }
 /* responsive section */
-@media (min-width:320px) and (max-width:600px){
+@media (min-width:320px) and (max-width:1024px) {
   .imgs-container li{
    width: 75px;
    height: 75px;
   }
   .img-hover{
    display: none;
-  }
-  .mobile-btn{
-    display: block;
   }
   header{
     position: fixed;
@@ -293,7 +292,7 @@ ul.container {
   }
   .open-header{
     transform: translateY(0);
-}
+  }
   .fa-sort-down{
     transform: translateY(-40px);
     cursor: pointer;
@@ -303,29 +302,28 @@ ul.container {
     flex-flow: column wrap;
     justify-content: space-evenly;
   }
-  .popular-imgs-container{
-    overflow: auto;
-    word-wrap: break-word;
+  .popular-searches-container{
+    /* word-wrap: break-word; */
   }
   .details-container h1, h2 {
     margin-top: 5px;
-}
+  }
 .details-container h1 {
   font-size: 0.7rem;
-}
+  }
 .details-container h2 {
   font-size: 0.5rem;
-}
+  }
 .details-container p {
   font-size: 0.5rem;
-}
+  }
 .about-container {
   height: 260px;
-}
+  }
   .profile-pic {
     height: 75px;
     width: 75px;
-}
+  }
   main{
     padding-top: 60px;
   }
@@ -335,25 +333,60 @@ ul.container {
   }
   .getInTouch-container p {
     font-size: 0.6rem;
-}
+  }
 .getInTouch-container h1 {
   font-size: 1rem;
-}
+  }
 textarea{
   height: 80px;
-}
+  }
 form input{
   padding: 5px;
-}
+  }
 .form-container{
   padding: 10%;
-}
+  }
 .contact-details-container,.icons-container{
   padding: 0 10%;
+  }
+  @media (min-width:515px){
+    .imgs-container li{
+      width: 100px;
+      height: 100px;
+     }
+  }
+  @media (min-width:665px){
+    .imgs-container li{
+      width: 175px;
+      height: 175px;
+     }
+     .form-container{
+       padding-bottom: 0;
+     }
+     .contact-details-container,.icons-container{
+      padding: 0 20%;
+    }
+  .details-container h1, h2 {
+    margin-top: 5px;
+  }
+.details-container h1 {
+  font-size: 1rem;
+  }
+.details-container h2 {
+  font-size: 1rem;
+  }
+.details-container p {
+  font-size: 0.7rem;
+  }
+.about-container {
+  height: 300px;
+  } 
+}
 }
 
 
-}
+
+
 /* gal */
 
 /* didi */

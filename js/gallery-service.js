@@ -77,16 +77,22 @@ function getImgKeywordByinput(input) {
 }
 
 function addPopKeyword(keyword) {
-    if (keyword && gPopularWordCounter < 28) {
+    if (keyword) {
         gPopularImgsMap[keyword] ? gPopularImgsMap[keyword]++ : gPopularImgsMap[keyword] = 1;
         checkMaxLimitFontSize(keyword);
         savePopularMapToStorage(gPopularImgsMap);
     }
-    gPopularWordCounter = 0;
 }
 function checkMaxLimitFontSize(keyword) {
-    if (gPopularImgsMap[keyword] >= 7)
-        gPopularImgsMap[keyword] = 7;
+    var windowWidth = document.body.clientWidth;
+    if (windowWidth <= 500) {
+        if (gPopularImgsMap[keyword] >= 6)
+            gPopularImgsMap[keyword] = 6;
+    }
+    else{
+        if (gPopularImgsMap[keyword] >= 10)
+        gPopularImgsMap[keyword] = 10;
+    }
 }
 function putKeyWordsOnImg(keywords) {
     var strToHtml = '<br> key words for meme: <br>';

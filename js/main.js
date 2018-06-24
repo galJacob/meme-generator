@@ -3,7 +3,7 @@
 var gImgs = [];
 var MAP_KEY = 'popular imgs';
 var gPopularImgsMap;
-var gPopularWordCounter = 0;
+var MY_EMAIL = 'joojonogal2@gmail.com';
 
 function init() {
     createImgs();
@@ -114,11 +114,10 @@ function renderImgsByInput(elInput) {
     renderImgs(sortedImgs);
 }
 function displayPopularImgsMap(popularImgsMap) {
-    var elPopularContainer = document.querySelector('.popular-imgs-container');
+    var elPopularContainer = document.querySelector('.popular-searches-container');
     var strHtml = '<h1>popular searches:</h1> ';
     for (var prop in popularImgsMap) {
-        strHtml += `<a style="font-size:${10 * popularImgsMap[prop]}px;"href="">&nbsp;${prop}</a> `;
-        gPopularWordCounter += popularImgsMap[prop];
+        strHtml += `<a style="font-size:${0.4 * popularImgsMap[prop]}em;"href="">&nbsp;${prop}</a> `;
     }
     elPopularContainer.innerHTML = strHtml;
     // console.log(gPopularImgsMap);
@@ -209,9 +208,21 @@ function onDownloadImg(elLink, filename = 'meme.png') {
 }
 function toggleMenu() {
     var elNav = document.querySelector('header');
-    var elMenuArrow = document.querySelector('.arrows-container');
     elNav.classList.toggle('open-header');
-    elMenuArrow.classList.toggle('.closed-arrows-container::after');
+}
+function scrollToElement(el) {
+    var elToScrollTo = document.getElementById(el.innerText)
+    console.log(el.innerText);
+    console.log(elToScrollTo);
+    elToScrollTo.scrollIntoView({ behavior: 'smooth' });
+}
+function submitDetails() {
+    var contactName = document.querySelector('.name-of-contact').value;
+    var mailAddress = document.querySelector('.e-mail').value;
+    var subject = document.querySelector('.subject').value;
+    var message = document.querySelector('.message').value;
+    var linkStr = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_EMAIL}&su=${subject}&body=${message}`;
+    window.location.assign(linkStr);
 }
 // function displayPopularWords() {
 //     var pageWidth = document.body.clientWidth;
