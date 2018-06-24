@@ -15,14 +15,14 @@
     <header class="flex">
         <!-- <button class="mobile-btn"></button> -->
         <nav class="flex">
-            <a onclick="scrollToElement(this)">editor modal </a>
-            <a onclick="scrollToElement(this)">get in touch</a>
+            <a onclick="scrollToEl(this)">editor modal </a>
+            <a onclick="scrollToEl(this)">get in touch</a>
             <div class="arrows-container">
                 <i onclick="toggleMenu()" class="fas fa-sort-down fa-8x menu-arrow"> </i>
                 <!-- <i onclick="toggleMenu()" class="fas fa-angle-double-down fa-4x"></i> -->
             </div>
-            <a onclick="scrollToElement(this)">about</a>
-            <a onclick="scrollToElement(this)">popular searches</a>
+            <a onclick="scrollToEl(this)">about</a>
+            <a onclick="scrollToEl(this)">popular searches</a>
         </nav>
 
         <!-- uploading a file,for later: -->
@@ -44,7 +44,7 @@
             <input class="file-item" type="file" accept=".jpg" />
             <span>upload file from site address</span>
             <input type="text" id="load-image-from-web-input" placeholder="http://www">
-            <button onclick="onUpload()" class="upload-btn btn">upload</button>
+            <button onclick="onUploadImg()" class="upload-btn btn">upload</button>
         </div>
         <div class="input-container flex">
             <!-- find a use for this button: -->
@@ -128,8 +128,8 @@
         <button class="return-btn btn center-items" onclick="closeModal()">&times;</button>
         <!-- <div class="content-wrapper flex column center-items"> -->
         <div class="modal-content flex">
-            <!-- TODO(Didi): add wrap for mobile to make the text editor on column -->
-            <canvas id="meme-canvas" class="img-canvas" onclick="handleKey(event)">
+            <!-- Optional handleClick on canvas offsetY -->
+            <canvas id="meme-canvas" class="img-canvas">
             </canvas>
 
             <div class="textareas-container flex column center-items">
