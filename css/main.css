@@ -7,6 +7,20 @@ body {
   margin: 0;
   font-family: 'Arvo', serif;
 }
+.upload-container{
+    display: flex;
+    flex-flow: column wrap;
+    height: 100px;
+    position: absolute;
+    justify-content: space-between;
+    background-color: white;
+    left: 30px;
+    top: 60px;
+    /* width: 50px; */
+}
+.upload-container *{
+  /* width: 100px; */
+}
 
 main{
   flex-direction: column;
