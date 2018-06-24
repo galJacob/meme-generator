@@ -4,6 +4,7 @@ var gImgs = [];
 var MAP_KEY = 'popular imgs';
 var gPopularImgsMap;
 var gPopularWordCounter = 0;
+var gCanvasImg;
 
 function init() {
     createImgs();
@@ -35,7 +36,8 @@ function openModal(id) {
     // getActiveLastTxt(id);
     resetMemeModel(id)
     renderTextarea(0, id);
-    setCanvas(id);
+    // setCanvas(id);
+    initCanvas(id);
     elModal.classList.remove('hide');
     var elBody = document.querySelector('body');
     elBody.classList.add('no-scroll');
@@ -46,22 +48,24 @@ function closeModal() {
     var elBody = document.querySelector('body');
     elBody.classList.remove('no-scroll');
 }
-function setCanvas(id, txts = [], activeTxt = false) {
+function initCanvas(id) {
     var elCanvas = document.querySelector('#meme-canvas');
-    var img = new Image();
-    img.onload = function () {
-        elCanvas.width = img.width;
-        elCanvas.height = img.height;
+    gCanvasImg = new Image();
+    gCanvasImg.onload = function () {
+        elCanvas.width = gCanvasImg.width;
+        elCanvas.height = gCanvasImg.height;
         var ctx = elCanvas.getContext('2d');
-        // ctx.fillStyle = 'whitesmoke';
-        // ctx.fillRect(0, 0, elCanvas.width, elCanvas.height);
-        ctx.drawImage(img, 0, 0);
-        console.log('txts:', txts)
-        if (txts.length > 0) renderTxtsOnCanvas(txts);
-        // if (activeTxt) renderFrag(activeTxt.line, activeTxt.size)
+        ctx.drawImage(gCanvasImg, 0, 0);
+    }
+    gCanvasImg.src = `meme-imgs/${id}.jpg`;
 
-    };
-    img.src = `meme-imgs/${id}.jpg`;
+}
+function setCanvas(txts = [], activeTxt = false) {
+    var elCanvas = document.querySelector('#meme-canvas');
+    var ctx = elCanvas.getContext('2d');
+    ctx.drawImage(gCanvasImg, 0, 0);
+    if (txts.length > 0) renderTxtsOnCanvas(txts);
+    if (activeTxt) renderFrag(activeTxt.textareaIdx);
 }
 function renderTxtsOnCanvas(txts) {
     txts.forEach(function (txt) {
@@ -155,7 +159,7 @@ function renderTextarea(idx, id) {
     if (!txt.bold) bold = 'no-bold'
 
     var strHtml = `<div class="add-line-container flex column" id="add-line${idx}">
-    <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" onfocus="renderFrag(${txt.line}, ${txt.size})" placeholder="Enter Text" value="${str}">${str}</textarea>
+    <textarea data-idx="${idx}" id="textarea${idx}" oninput="onInpTextarea(this)" onfocus="onInpTextarea(this)" placeholder="Enter Text" value="${str}">${str}</textarea>
     <div class="ctrl-btns-container flex">
     <button class="ctrl-btn btn ctrl-color">
     <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
@@ -191,8 +195,6 @@ function renderTextarea(idx, id) {
 
     var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
-    // var txts = getMemeTxts();
-    // setCanvas(id, txts);
 }
 function cleanTextareas() {
     var elTextareas = document.querySelectorAll('.add-line-container textarea');
@@ -202,14 +204,9 @@ function cleanTextareas() {
 }
 function onDownloadImg(elLink, filename = 'meme.png') {
     console.log('Download!');
-    // Add Clear Interval for fragement
-    setCanvas(getCurrId(), getMemeTxts());
-    //TODO: fix the a-syncronization
-    setTimeout(function () {
-        elLink.href = document.querySelector('#meme-canvas').toDataURL();
-        elLink.download = filename;
-    }, 1);
-
+    setCanvas(getMemeTxts());
+    elLink.href = document.querySelector('#meme-canvas').toDataURL();
+    elLink.download = filename;
 }
 function toggleMenu() {
     var elNav = document.querySelector('header');
@@ -222,13 +219,11 @@ function toggleMenu() {
 //     if()
 // }
 
-// function renderFrag(line, size) {?
-function renderFragement(activeTxt) {
+function renderFrag(idx) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
+    var txt = getMemeTxts()[idx];
+    var line = txt.line;
+    var size = txt.size;
     ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
-}
-function clearFrag(){
-    console.log('clear frag');
-    
 }

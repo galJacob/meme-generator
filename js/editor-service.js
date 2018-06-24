@@ -9,9 +9,9 @@ function assignTxt(txtToAssign) {
   // var activeTxtIdx = txtToAssign.textareaIdx
   gMeme.txts[txtToAssign.textareaIdx] = txtToAssign;
   //added textareaidx:
-  setCanvas(gMeme.selectedImgId, gMeme.txts, txtToAssign);
+  setCanvas(gMeme.txts, txtToAssign);
 }
-function resetMemeModel(id){
+function resetMemeModel(id) {
   gMeme = {
     selectedImgId: id,
     txts: []
@@ -21,7 +21,7 @@ function getActiveTextareaLastTxt(idx) {
   var defaultTxt = {
     str: '',
     line: 100,
-    size: 30,
+    size: 56,
     align: 'center',
     color: '#ffffff',
     font: 'Impact',
@@ -86,7 +86,7 @@ function updateTxtAt(param, idx, type) {
     default:
       break;
   }
-  setCanvas(gMeme.selectedImgId, gMeme.txts, currTxt);
+  setCanvas(gMeme.txts, currTxt);
 }
 function getCurrId() {
   return gMeme.selectedImgId;
