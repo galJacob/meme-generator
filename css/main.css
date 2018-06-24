@@ -3,7 +3,6 @@
 }
 
 body {
-  /* background-color: rgb(99, 87, 87); */
   margin: 0;
   font-family: 'Arvo', serif;
 }
@@ -31,7 +30,6 @@ body {
     background-color: white;
     left: 30px;
     top: 60px;
-    /* width: 50px; */
 }
 
 
@@ -61,9 +59,10 @@ header{
 .input-container{
   flex-direction: column;
 }
-.arrows-container{
+.arrow-container{
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 nav{
     justify-content: space-around;
@@ -74,19 +73,6 @@ nav{
     align-items: center;
     padding: 0 20%;
 }
-.arrows-container{
-  position: relative;
-}
-.fa-angle-double-down{
-  position: absolute;
-  left: 33%;
-  top: 48%;
-  color: white;
-  cursor: pointer;
-}
-.fa-angle-double-down:hover{
-  color:#299f81;
-}
 nav a{
     text-decoration: none;
     color: white;
@@ -95,7 +81,6 @@ nav a{
 nav a:hover{
 color:#299f81
 }
-
 .imgs-container {
   width: 100%;
   max-width: 1040px;
@@ -113,7 +98,7 @@ h1{
   padding: 0;
 }
 .input-container input{
-  box-shadow: 0 0 6px rgb(13, 133, 167,1);
+  box-shadow: 0 0 5px rgb(13, 133, 167,1);
 }
 
 .popular-searches-container{
@@ -295,8 +280,7 @@ ul.container {
   width: 200px;
   height: 200px;
 }
-/* hexagon ? */
-/* hexagon ? */
+
 .fit-background {
   background-repeat: no-repeat;
   background-size: cover;
@@ -416,10 +400,6 @@ form input{
   } 
 }
 }
-
-
-
-
 /* gal */
 
 /* didi */
@@ -566,7 +546,6 @@ form input{
 }
 
 .browse-txts-container {
-  /* background: #b3b3b3; */
   border-radius: 10px;
 }
 
@@ -655,8 +634,6 @@ font-size: 1rem;
 .pick-impact {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-
-/* TODO: make the browseBar flex wrap on mobile; */
 
 /* didi */
 
