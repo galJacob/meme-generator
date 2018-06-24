@@ -212,12 +212,18 @@ function onDownloadImg(elLink, filename = 'meme.png') {
 
 }
 function toggleMenu() {
-    var elNav = document.querySelector('nav');
-    var elMenuArrow = document.querySelector('.menu-arrow');
-    elNav.classList.toggle('closed-nav');
-    elMenuArrow.classList.toggle('closed-menu-arrow');
+    var elNav = document.querySelector('header');
+    var elMenuArrow = document.querySelector('.arrows-container');
+    elNav.classList.toggle('open-header');
+    elMenuArrow.classList.toggle('.closed-arrows-container::after');
 }
-function renderFrag(line, size) {
+// function displayPopularWords() {
+//     var pageWidth = document.body.clientWidth;
+//     if()
+// }
+
+// function renderFrag(line, size) {?
+function renderFragement(activeTxt) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
     ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
