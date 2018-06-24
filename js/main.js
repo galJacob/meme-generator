@@ -168,7 +168,6 @@ function renderTextarea(idx, add = false) {
     var length = getTxtsLength();
     if (add) {
         var textareaVal = document.querySelector('.add-line-container textarea').value;
-        console.log('idx', idx, 'textarea val', textareaVal);
     }
     if (idx === -1 || idx > length || textareaVal === '') return;
     var txt = getActiveTextareaLastTxt(idx); //
@@ -254,7 +253,6 @@ function renderFrag(idx) {
     ctx.strokeRect(15, line - size, ctx.canvas.width - 25, size + 13)
 }
 function fbFeature(elFBBtn) {
-    setCanvas(getMemeTxts());
     elFBBtn.classList.add('hide');
     document.querySelector('.share-container').classList.remove('hide');
 }

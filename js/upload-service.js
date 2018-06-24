@@ -1,6 +1,7 @@
 function uploadImg(elForm, ev) {
     ev.preventDefault();
-    var canvas  = document.querySelector('#meme-canvas')
+    var canvas  = document.querySelector('#meme-canvas');
+    setCanvas(getMemeTxts());
     document.getElementById('imgData').value = canvas.toDataURL("image/jpeg");
 
     // A function to be called if request succeeds
