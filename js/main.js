@@ -123,6 +123,10 @@ function displayPopularImgsMap(popularImgsMap) {
     // console.log(gPopularImgsMap);
     // console.log(elPopularContainer);
 }
+function onUpload() {
+    var file = document.querySelector('.file-item').files[0];
+    console.log(file);
+}
 function onPopularImgsMapInput(elInput) {
     var input = elInput.value.toLowerCase();
     gPopularImgsMap = loadPopularMapFromStorage();
@@ -227,14 +231,14 @@ function submitDetails() {
     var message = document.querySelector('.message').value;
     var linkStr = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_EMAIL}&su=${subject}&body=${message}`;
     window.open(linkStr);
-}   
+}
 // function renderFrag(line, size) {?
 function renderFragement(activeTxt) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
     ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
 }
-function clearFrag(){
+function clearFrag() {
     console.log('clear frag');
-    
+
 }

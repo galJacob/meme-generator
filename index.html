@@ -39,6 +39,13 @@
         <h1>
             <b>search for a meme!</b>
         </h1>
+        <div class="upload-container">
+            <span>upload file from desktop:</span>
+            <input class="file-item" type="file" accept=".jpg" />
+            <span>upload file from site address</span>
+            <input type="text" id="load-image-from-web-input" placeholder="http://www">
+            <button onclick="onUpload()" class="upload-btn btn">upload</button>
+        </div>
         <div class="input-container flex">
             <!-- find a use for this button: -->
             <input type="text" list="words" value="" oninput="renderImgsByInput(this),onPopularImgsMapInput(this)">
