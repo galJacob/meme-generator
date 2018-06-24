@@ -10,7 +10,7 @@ function init() {
     createImgs();
     renderImgs(gImgs);
     gPopularImgsMap = createPopularImgsMap();
-    displayPopularImgsMap(gPopularImgsMap);
+    displayPopImgsMap(gPopularImgsMap);
 }
 function renderImgs(imgs) {
     var strHtmls = imgs.map(function (img) {
@@ -31,12 +31,9 @@ function renderImgs(imgs) {
 }
 function openModal(id) {
     var elModal = document.querySelector('#editor-modal');
-    //clean Modal Textareas by NodeList
-    // cleanTextareas();
-    // getActiveLastTxt(id);
     resetMemeModel(id)
-    renderTextarea(0);
     initCanvas(id);
+    renderTextarea(0);
     elModal.classList.remove('hide');
     var elBody = document.querySelector('body');
     elBody.classList.add('no-scroll');
@@ -51,18 +48,17 @@ function initCanvas(id) {
     var elCanvas = document.querySelector('#meme-canvas');
     gCanvasImg = new Image();
     gCanvasImg.onload = function () {
-        elCanvas.width = gCanvasImg.width;
-        elCanvas.height = gCanvasImg.height;
+        elCanvas.width = 500;
+        elCanvas.height = gCanvasImg.height / gCanvasImg.width * 500;
         var ctx = elCanvas.getContext('2d');
-        ctx.drawImage(gCanvasImg, 0, 0);
+        ctx.drawImage(gCanvasImg, 0, 0, 500, gCanvasImg.height / gCanvasImg.width * 500);
     }
-    gCanvasImg.src =id;
-    // gCanvasImg.src = `meme-imgs/${id}.jpg`;
+    gCanvasImg.src = `meme-imgs/${id}.jpg`;
 }
 function setCanvas(txts = [], activeTxt = false) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
-    ctx.drawImage(gCanvasImg, 0, 0);
+    ctx.drawImage(gCanvasImg, 0, 0, 500, gCanvasImg.height / gCanvasImg.width * 500);
     if (txts.length > 0) renderTxtsOnCanvas(txts);
     if (activeTxt) renderFrag(activeTxt.textareaIdx);
 }
@@ -74,7 +70,6 @@ function renderTxtsOnCanvas(txts) {
 function renderTxtOnCanvas(txt) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
-    //   var middle = elCanvas.width*0.5 - size*txt.length*0.5;
     ctx.font = `${txt.size}px ${txt.font}`;
     ctx.fillStyle = txt.color;
 
@@ -86,11 +81,8 @@ function renderTxtOnCanvas(txt) {
     if (txt.bold) ctx.strokeText(txt.str, x, txt.line);
 }
 function onInpTextarea(elTextarea) {
-    // console.log('elInput', elInput.dataset.idx);
     var str = elTextarea.value;
-    // TODO: more inputs to send to obj
     var textareaIdx = +elTextarea.dataset.idx;
-    // txtBeenBefore(elInput);
     var lastIdxTxt = getActiveTextareaLastTxt(textareaIdx);
     var line = lastIdxTxt.line;
     var size = lastIdxTxt.size;
@@ -116,7 +108,7 @@ function renderImgsByInput(elInput) {
     var sortedImgs = sortImgsByInput(input);
     renderImgs(sortedImgs);
 }
-function displayPopularImgsMap(popularImgsMap) {
+function displayPopImgsMap(popularImgsMap) {
     var elPopularContainer = document.querySelector('.popular-searches-container');
     var strHtml = '<h1>popular searches:</h1> ';
     for (var prop in popularImgsMap) {
@@ -142,7 +134,7 @@ function onPopularImgsMapInput(elInput) {
     gPopularImgsMap = loadPopularMapFromStorage();
     var keyword = getImgKeywordByinput(input);
     addPopKeyword(keyword);
-    displayPopularImgsMap(gPopularImgsMap);
+    displayPopImgsMap(gPopularImgsMap);
 }
 function showFontMenu(idx) {
     document.querySelector(`.font-pick${idx}`).classList.toggle('hide');
@@ -152,21 +144,13 @@ function onUpdateTxtBy(param, idx, type) {
     if (!elTextarea.value) return;
     updateTxtAt(param, idx, type);
 }
-function handleKey(ev) {
-    console.log('ev', ev)
-    var y = ev.clientY;
-    var x = ev.clientX;
-    // ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
-    // ctx.strokeRect(x,y,w,h)
-    var idx = getMouseMatchTxtIdx(x, y);
-    console.log('idx', idx)
-    if (idx !== -1) renderTextarea(idx);
 
-    // updateLineAtCurrTxt();
-}
-function renderTextarea(idx) {
+function renderTextarea(idx, add = false) {
     var length = getTxtsLength();
-    if (idx === -1 || idx > length) return;
+    if (add) {
+        var textareaVal = document.querySelector('.add-line-container textarea').value;
+    }
+    if (idx === -1 || idx > length || textareaVal === '') return;
     var txt = getActiveTextareaLastTxt(idx); //
     var str = txt.str;
     var color = txt.color;
@@ -179,16 +163,16 @@ function renderTextarea(idx) {
     <button class="ctrl-btn btn ctrl-color">
     <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
     </button>
-    <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', ${idx})">+</button>
-    <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', ${idx})">-</button>
-    <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(${idx})">A</button>
-    <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', ${idx})">▲</button>
-    <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', ${idx})">▼</button>
+    <button class="ctrl-btn btn ctrl-font-inc fas fa-plus-square" onclick="onUpdateTxtBy('fontInc', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-font-dec fas fa-minus-square" onclick="onUpdateTxtBy('fontDec', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-font fas fa-font" onclick="showFontMenu(${idx})"></button>
+    <button class="ctrl-btn btn ctrl-up fas fa-chevron-circle-up" onclick="onUpdateTxtBy('up', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-down fas fa-chevron-circle-down" onclick="onUpdateTxtBy('down', ${idx})"></button>
     
-    <button class="ctrl-btn btn ctrl-bold ${bold}" onclick="onUpdateTxtBy('bold', ${idx})">B</button>
-    <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', ${idx})">L</button>
-    <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${idx})">C</button>
-    <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${idx})">R</button>
+    <button class="ctrl-btn btn ctrl-bold ${bold} fas fa-bold" onclick="onUpdateTxtBy('bold', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-left fas fa-align-left" onclick="onUpdateTxtBy('left', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-center fas fa-align-center" onclick="onUpdateTxtBy('center', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-right fas fa-align-right" onclick="onUpdateTxtBy('right', ${idx})"></button>
     </div>
     <ul class="clean-list font-pick-bar font-pick${idx} hide flex">
     <li class="pick-impact" onclick="onUpdateTxtBy('font', ${idx} ,'Impact')">Impact</li>
@@ -204,21 +188,15 @@ function renderTextarea(idx) {
 
     //assign status
     strHtml =
-        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1});">⯇</button>
+        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1});">Previous line</button>
     <span class="show-curr-line">${idx + 1}</span>
-    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1})">⯈</button>`;
+    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1}, true)">Next line / <i class="fas fa-plus-circle"></i></button>`;
 
     var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
 }
-function cleanTextareas() {
-    var elTextareas = document.querySelectorAll('.add-line-container textarea');
-    for (var i = 0; i < elTextareas.length; i++) {
-        elTextareas[i].value = '';
-    }
-}
 function onDownloadImg(elLink, filename = 'meme.png') {
-    console.log('Download!');
+    filename = prompt('Choose File\'s Name (PNG file):')+'.png';
     setCanvas(getMemeTxts());
     elLink.href = document.querySelector('#meme-canvas').toDataURL();
     elLink.download = filename;
@@ -227,7 +205,7 @@ function toggleMenu() {
     var elNav = document.querySelector('header');
     elNav.classList.toggle('open-header');
 }
-function scrollToElement(el) {
+function scrollToEl(el) {
     var elToScrollTo = document.getElementById(el.innerText)
     console.log(el.innerText);
     console.log(elToScrollTo);
@@ -241,7 +219,6 @@ function submitDetails() {
     var linkStr = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_EMAIL}&su=${subject}&body=${message}`;
     window.open(linkStr);
 }
-
 function renderFrag(idx) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
@@ -249,4 +226,22 @@ function renderFrag(idx) {
     var line = txt.line;
     var size = txt.size;
     ctx.strokeRect(15, line - size, ctx.canvas.width - 25, size + 13)
+}
+function fbFeature(elFbBtn) {
+    elFbBtn.classList.add('hide');
+    document.querySelector('.share-container').classList.remove('hide');
+}
+function handleClickOnCanvas(ev) {
+    // console.log('ev', ev)
+    var y = ev.clientY;
+    var x = ev.clientX;
+    console.log('clientY', y)
+    console.log('offsetY', ev.offsetY)
+    // ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
+    // ctx.strokeRect(x,y,w,h)
+    var idx = getMouseMatchTxtIdx(x, y);
+    console.log('idx', idx)
+    if (idx !== -1) renderTextarea(idx);
+
+    // updateLineAtCurrTxt();
 }

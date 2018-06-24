@@ -7,7 +7,7 @@ var gMeme = {
 };
 function assignTxt(txtToAssign) {
   // var activeTxtIdx = txtToAssign.textareaIdx
-  gMeme.txts[txtToAssign.textareaIdx] = txtToAssign;
+  if (txtToAssign.str !== '') gMeme.txts[txtToAssign.textareaIdx] = txtToAssign;
   //added textareaidx:
   setCanvas(gMeme.txts, txtToAssign);
 }
@@ -96,7 +96,7 @@ function getTxtsLength() {
 }
 function getMouseMatchTxtIdx(x, y) {
   return gMeme.txts.findIndex(function (txt) {
-    console.log('x', x, 'y', y, 'txt: ', txt)
-    return y <= txt.line + txt.size && y >= txt.line;
+    // console.log('clientX', x, 'clientY', y, 'txt: ', txt)
+    return y >= txt.line - 13 - txt.size && y <= txt.line - 13;
   })
 }
