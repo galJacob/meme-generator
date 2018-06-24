@@ -56,8 +56,8 @@ function initCanvas(id) {
         var ctx = elCanvas.getContext('2d');
         ctx.drawImage(gCanvasImg, 0, 0);
     }
-    gCanvasImg.src = `meme-imgs/${id}.jpg`;
-
+    gCanvasImg.src =id;
+    // gCanvasImg.src = `meme-imgs/${id}.jpg`;
 }
 function setCanvas(txts = [], activeTxt = false) {
     var elCanvas = document.querySelector('#meme-canvas');
@@ -120,16 +120,23 @@ function displayPopularImgsMap(popularImgsMap) {
     var elPopularContainer = document.querySelector('.popular-searches-container');
     var strHtml = '<h1>popular searches:</h1> ';
     for (var prop in popularImgsMap) {
-        strHtml += `<a style="font-size:${0.4 * popularImgsMap[prop]}em;" href="">&nbsp;${prop}</a> `;
+        strHtml += `<a onclick="putPopularWordInInput(this)" 
+        style="font-size:${0.4 * popularImgsMap[prop]}em;" >
+        &nbsp;${prop}</a> `;
     }
     elPopularContainer.innerHTML = strHtml;
     // console.log(gPopularImgsMap);
     // console.log(elPopularContainer);
 }
-function onUpload() {
-    var file = document.querySelector('.file-item').files[0];
-    console.log(file);
+function putPopularWordInInput(elWord) {
+    var elMemeSearcher = document.getElementById('meme-searcher');
+    elMemeSearcher.value = elWord.innerText;
+    // var elToScrollTo = document.getElementById(el.innerText)
+    // console.log(el.innerText);
+    // console.log(elToScrollTo);
+    elMemeSearcher.scrollIntoView({ behavior: 'smooth' });
 }
+
 function onPopularImgsMapInput(elInput) {
     var input = elInput.value.toLowerCase();
     gPopularImgsMap = loadPopularMapFromStorage();

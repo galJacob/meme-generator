@@ -13,9 +13,10 @@
 
 <body onload="init()">
     <header class="flex">
+        <canvas id="myCanvas" width="100" height="100" style="outline:1px solid green"></canvas>
         <!-- <button class="mobile-btn"></button> -->
         <nav class="flex">
-            <a onclick="scrollToElement(this)">editor modal </a>
+            <a onclick="scrollToElement(this)"> upload img</a>
             <a onclick="scrollToElement(this)">get in touch</a>
             <div class="arrows-container">
                 <i onclick="toggleMenu()" class="fas fa-sort-down fa-8x menu-arrow"> </i>
@@ -40,15 +41,15 @@
             <b>search for a meme!</b>
         </h1>
         <div class="upload-container">
-            <span>upload file from desktop:</span>
-            <input class="file-item" type="file" accept=".jpg" />
-            <span>upload file from site address</span>
-            <input type="text" id="load-image-from-web-input" placeholder="http://www">
-            <button onclick="onUpload()" class="upload-btn btn">upload</button>
+            <input type="file" name="image" onchange="onFileInputChange(event)" />
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadedImg(this, event)">
+                <input name="img" id="imgData" type="hidden" />
+                <button type="submit">Publish</button>
+            </form>
         </div>
         <div class="input-container flex">
             <!-- find a use for this button: -->
-            <input type="text" list="words" value="" oninput="renderImgsByInput(this),onPopularImgsMapInput(this)">
+            <input id="meme-searcher" type="text" list="words" value="" oninput="renderImgsByInput(this),onPopularImgsMapInput(this)">
             <datalist id="words" class="popular-list">
                 <option value="trump">
                     <option value="success">
@@ -155,6 +156,8 @@
     </div>
     </div>
     <!-- Didi -->
+    <script src="upload-new-meme/js/upload-service.js"></script>
+    <script src="upload-new-meme/js/upload-main.js"></script>
     <script src="js/utils-service.js"></script>
     <script src="js/upload-service.js"></script>
     <script src="js/gallery-service.js"></script>
