@@ -36,7 +36,6 @@ function openModal(id) {
     // getActiveLastTxt(id);
     resetMemeModel(id)
     renderTextarea(0);
-    // setCanvas(id);
     initCanvas(id);
     elModal.classList.remove('hide');
     var elBody = document.querySelector('body');
@@ -144,11 +143,13 @@ function onUpdateTxtBy(param, idx, type) {
 }
 function handleKey(ev) {
     console.log('ev', ev)
-    var y = ev.offsetY;
-    var x = ev.offsetX;
+    var y = ev.clientY;
+    var x = ev.clientX;
     // ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
     // ctx.strokeRect(x,y,w,h)
-    if (y >= line && <= size + 13) renderTextarea(idx);
+    var idx = getMouseMatchTxtIdx(x, y);
+    console.log('idx', idx)
+    if (idx !== -1) renderTextarea(idx);
 
     // updateLineAtCurrTxt();
 }

@@ -94,18 +94,9 @@ function getCurrId() {
 function getTxtsLength() {
   return gMeme.txts.length;
 }
-
-// function getActiveIdxLastTxt(idx) {
-//   var txt = gMeme.txts[idx];
-//   if (txt && txt !== undefined) return txt;
-//   return {
-//     str: '',
-//     line: 100,
-//     size: 56,
-//     align: 'center',
-//     color: '#ffffff',
-//     font: 'Impact',
-//     bold: true,
-//     textareaIdx: idx
-//   };
-// }
+function getMouseMatchTxtIdx(x, y) {
+  return gMeme.txts.findIndex(function (txt) {
+    console.log('x', x, 'y', y, 'txt: ', txt)
+    return y <= txt.line + txt.size && y >= txt.line;
+  })
+}
