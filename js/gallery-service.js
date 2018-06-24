@@ -1,6 +1,5 @@
 'use strict';
 
-//creates the gImgs arr, the core "data base" gallery 
 function createImgs() {
     gImgs.push(createImg(1, 'meme-imgs/1.jpg', ['happy', 'fucks given']));
     gImgs.push(createImg(2, 'meme-imgs/2.jpg', ['angry', 'racist', 'trump']));
@@ -13,7 +12,7 @@ function createImgs() {
     gImgs.push(createImg(9, 'meme-imgs/9.jpg', ['haim-hecht', 'what would you do?', 'israeli']));
     gImgs.push(createImg(10, 'meme-imgs/10.jpg', ['what', 'why']));
     gImgs.push(createImg(11, 'meme-imgs/11.jpg', ['aliens', 'science']));
-    gImgs.push(createImg(12, 'meme-imgs/12.jpg', ['sarcasm', 'austin powers']));
+    gImgs.push(createImg(12, 'meme-imgs/12.jpg', ['didi', 'gal','heroes']));
     gImgs.push(createImg(13, 'meme-imgs/13.jpg', ['happy', 'afircan', 'success']));
     gImgs.push(createImg(14, 'meme-imgs/14.jpg', ['trump', 'white', 'angry', 'racist']));
     gImgs.push(createImg(15, 'meme-imgs/15.jpg', ['wow', 'look', 'african']));
@@ -29,7 +28,6 @@ function createImgs() {
     gImgs.push(createImg(25, 'meme-imgs/25.jpg', ['fucks i give', 'toy-story']));
 }
 
-//creates a single img 
 function createImg(id, url, keywords) {
     var img = {
         id: id,
@@ -39,7 +37,6 @@ function createImg(id, url, keywords) {
     return img;
 }
 
-//function that sorts imgs by their input and returns the sorted imgs arr
 function sortImgsByInput(input) {
     if (input === '')
         return gImgs;
@@ -59,7 +56,7 @@ function createPopularImgsMap() {
     if (popularImgsMap) return popularImgsMap;
     popularImgsMap = {};
     popularImgsMap = {
-        'happy': 4,
+        'happy': 2,
         'racist': 1
     };
     savePopularMapToStorage(popularImgsMap);
@@ -83,30 +80,23 @@ function addPopKeyword(keyword) {
         savePopularMapToStorage(gPopularImgsMap);
     }
 }
+
 function checkMaxLimitFontSize(keyword) {
     var windowWidth = document.body.clientWidth;
     if (windowWidth <= 500) {
-        if (gPopularImgsMap[keyword] >= 6)
-            gPopularImgsMap[keyword] = 6;
+        if (gPopularImgsMap[keyword] >= 5)
+            gPopularImgsMap[keyword] = 5;
     }
     else{
         if (gPopularImgsMap[keyword] >= 10)
         gPopularImgsMap[keyword] = 10;
     }
 }
+
 function putKeyWordsOnImg(keywords) {
     var strToHtml = '<br> key words for meme: <br>';
     for (var i = 0; i < keywords.length; i++)
         i === keywords.length - 1 ? strToHtml += ' ' + keywords[i] + ' ' : strToHtml += ' ' + keywords[i] + ' , ';
     return strToHtml;
 }
-
-
-
-// var trumpMeme = createImg(1, 'meme-imgs/3.jpg', ['angry', 'racist']);
-// console.log(trumpMeme);
-
-
-
-
 

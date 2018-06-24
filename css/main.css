@@ -18,6 +18,8 @@ body {
   font-weight: bold;
   font-size: 3.2rem;
   font-family: 'Fira Sans', sans-serif;
+  padding: 20px 0;
+  margin: 0;
 }
 
 .upload-container{
@@ -31,9 +33,7 @@ body {
     top: 60px;
     /* width: 50px; */
 }
-.upload-container *{
-  /* width: 100px; */
-}
+
 
 main{
   flex-direction: column;
@@ -45,7 +45,6 @@ main{
 /* gal */
 header{
     height: 50px;
-    margin-bottom: 50px;
     background-color:#2f2f2f;
     width: 100%;
 }
@@ -309,6 +308,9 @@ ul.container {
    width: 75px;
    height: 75px;
   }
+  .head-title{
+    font-size: 2.0rem;
+  }
   .img-hover{
    display: none;
   }
@@ -332,9 +334,6 @@ ul.container {
     padding: 0;
     flex-flow: column wrap;
     justify-content: space-evenly;
-  }
-  .popular-searches-container{
-    /* word-wrap: break-word; */
   }
   .details-container h1, h2 {
     margin-top: 5px;
@@ -396,6 +395,9 @@ form input{
      }
      .contact-details-container,.icons-container{
       padding: 0 20%;
+    }
+    nav a{
+      font-size: 1.3rem;
     }
   .details-container h1, h2 {
     margin-top: 5px;

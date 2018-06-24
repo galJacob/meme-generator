@@ -102,35 +102,32 @@ function onInpTextarea(elTextarea) {
         bold: bold
     });
 }
-//gets the input from the user and showing the pictures that match the typed letters
 function renderImgsByInput(elInput) {
-    var input = elInput.value.toLowerCase();
+    var input = elInput.toLowerCase();
     var sortedImgs = sortImgsByInput(input);
     renderImgs(sortedImgs);
 }
+
 function displayPopImgsMap(popularImgsMap) {
     var elPopularContainer = document.querySelector('.popular-searches-container');
     var strHtml = '<h1>popular searches:</h1> ';
     for (var prop in popularImgsMap) {
-        strHtml += `<a onclick="putPopularWordInInput(this)" 
-        style="font-size:${0.4 * popularImgsMap[prop]}em;" >
+        strHtml += `<a value="${prop}" onclick="putPopularWordInInput(this)" 
+        style="font-size:${0.5 * popularImgsMap[prop]}em;" >
         &nbsp;${prop}</a> `;
     }
     elPopularContainer.innerHTML = strHtml;
-    // console.log(gPopularImgsMap);
-    // console.log(elPopularContainer);
 }
 function putPopularWordInInput(elWord) {
+    var word = elWord.innerText.trim();
     var elMemeSearcher = document.getElementById('meme-searcher');
-    elMemeSearcher.value = elWord.innerText;
-    // var elToScrollTo = document.getElementById(el.innerText)
-    // console.log(el.innerText);
-    // console.log(elToScrollTo);
+    elMemeSearcher.value = word;
+    onPopularImgsMapInput(word);
+    renderImgsByInput(word);
     elMemeSearcher.scrollIntoView({ behavior: 'smooth' });
 }
-
 function onPopularImgsMapInput(elInput) {
-    var input = elInput.value.toLowerCase();
+    var input = elInput.toLowerCase();
     gPopularImgsMap = loadPopularMapFromStorage();
     var keyword = getImgKeywordByinput(input);
     addPopKeyword(keyword);
@@ -196,7 +193,7 @@ function renderTextarea(idx, add = false) {
     elBrowseTxtsContainer.innerHTML = strHtml;
 }
 function onDownloadImg(elLink, filename = 'meme.png') {
-    filename = prompt('Choose File\'s Name (PNG file):')+'.png';
+    filename = prompt('Choose File\'s Name (PNG file):') + '.png';
     setCanvas(getMemeTxts());
     elLink.href = document.querySelector('#meme-canvas').toDataURL();
     elLink.download = filename;
@@ -207,13 +204,9 @@ function toggleMenu() {
 }
 function scrollToEl(el) {
     var elToScrollTo = document.getElementById(el.innerText)
-    console.log(el.innerText);
-    console.log(elToScrollTo);
     elToScrollTo.scrollIntoView({ behavior: 'smooth' });
 }
 function submitDetails() {
-    // var contactName = document.querySelector('.name-of-contact').value; , not necessery
-    // var mailAddress = document.querySelector('.e-mail').value; , not necessery
     var subject = document.querySelector('.subject').value;
     var message = document.querySelector('.message').value;
     var linkStr = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_EMAIL}&su=${subject}&body=${message}`;
@@ -232,16 +225,8 @@ function fbFeature(elFbBtn) {
     document.querySelector('.share-container').classList.remove('hide');
 }
 function handleClickOnCanvas(ev) {
-    // console.log('ev', ev)
     var y = ev.clientY;
     var x = ev.clientX;
-    console.log('clientY', y)
-    console.log('offsetY', ev.offsetY)
-    // ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
-    // ctx.strokeRect(x,y,w,h)
     var idx = getMouseMatchTxtIdx(x, y);
-    console.log('idx', idx)
     if (idx !== -1) renderTextarea(idx);
-
-    // updateLineAtCurrTxt();
 }
