@@ -8,8 +8,6 @@ body {
   font-family: 'Arvo', serif;
 }
 
-<<<<<<< HEAD
-=======
 @font-face {
   font-family:'Digitalt';
   src: url('../fonts/Digitalt.otf');
@@ -22,7 +20,6 @@ body {
   font-family: 'Fira Sans', sans-serif;
 }
 
->>>>>>> dd8aefe07fa800f09e6cbb398279868db8960701
 .upload-container{
     display: flex;
     flex-flow: column wrap;

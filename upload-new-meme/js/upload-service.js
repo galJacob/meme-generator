@@ -1,4 +1,4 @@
-// on submit call to this function
+'use strict';
 var gUploadedImgUrl;
 function uploadedImg(elForm, ev) {
   ev.preventDefault();
