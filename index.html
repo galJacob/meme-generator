@@ -136,10 +136,18 @@
                 <div class="action-line-wrapper flex space-between">
 
                     <button class="dwnld-btn btn">
-                        <a onclick="onDownloadImg(this, 'meme.png')">⇩</a>
+                        <a class="fas fa-download" onclick="onDownloadImg(this, 'meme.png')"></a>
                     </button>
                     <div class="browse-txts-container flex center-items"></div>
-                    <button class="share-btn btn">F</button>
+                    <!-- <button class="share-btn btn fab fa-facebook-f"></button> -->
+                    
+                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden"/>
+                        <button class="share-btn btn fab fa-facebook-f" type="submit" onclick="fbFeature(this)"></button>
+                      </form>
+
+                    <div id="fb-root"></div>
+                    <div class="share-container share-btn btn hide"></div>
                 </div>
                 <div class="add-line-container flex column" id="add-line"></div>
             </div>

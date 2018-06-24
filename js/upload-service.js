@@ -1,6 +1,6 @@
 function uploadImg(elForm, ev) {
     ev.preventDefault();
-
+    var canvas  = document.querySelector('#meme-canvas')
     document.getElementById('imgData').value = canvas.toDataURL("image/jpeg");
 
     // A function to be called if request succeeds
@@ -20,7 +20,7 @@ function uploadImg(elForm, ev) {
 function doUploadImg(elForm, onSuccess) {
     var formData = new FormData(elForm);
 
-    fetch('http://ca-upload.com/here/upload.php', {
+    fetch('https://ca-upload.com/here/upload.php', {
         method: 'POST',
         body: formData
     })
@@ -68,7 +68,7 @@ var ctx;
 function renderCanvas(img) {
     canvas.width = img.width;
     canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(gCanvasImg, 0, 0, 500, gCanvasImg.height / gCanvasImg.width * 500);
 }
 
 function onFileInputChange(files) {

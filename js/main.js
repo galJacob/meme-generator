@@ -35,8 +35,8 @@ function openModal(id) {
     // cleanTextareas();
     // getActiveLastTxt(id);
     resetMemeModel(id)
-    renderTextarea(0);
     initCanvas(id);
+    renderTextarea(0);
     elModal.classList.remove('hide');
     var elBody = document.querySelector('body');
     elBody.classList.add('no-scroll');
@@ -51,18 +51,23 @@ function initCanvas(id) {
     var elCanvas = document.querySelector('#meme-canvas');
     gCanvasImg = new Image();
     gCanvasImg.onload = function () {
-        elCanvas.width = gCanvasImg.width;
-        elCanvas.height = gCanvasImg.height;
+
+        elCanvas.width = 500;
+        elCanvas.height = gCanvasImg.height / gCanvasImg.width * 500;
         var ctx = elCanvas.getContext('2d');
-        ctx.drawImage(gCanvasImg, 0, 0);
+        ctx.drawImage(gCanvasImg, 0, 0, 500, gCanvasImg.height / gCanvasImg.width * 500);
     }
     gCanvasImg.src = `meme-imgs/${id}.jpg`;
+    // var width = gCanvasImg.width;
+    // gCanvasImg.height = gCanvasImg.height / width * 500;
+    // gCanvasImg.width = 500;
+
 
 }
 function setCanvas(txts = [], activeTxt = false) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
-    ctx.drawImage(gCanvasImg, 0, 0);
+    ctx.drawImage(gCanvasImg, 0, 0, 500, gCanvasImg.height / gCanvasImg.width * 500);
     if (txts.length > 0) renderTxtsOnCanvas(txts);
     if (activeTxt) renderFrag(activeTxt.textareaIdx);
 }
@@ -146,9 +151,11 @@ function onUpdateTxtBy(param, idx, type) {
     updateTxtAt(param, idx, type);
 }
 function handleKey(ev) {
-    console.log('ev', ev)
+    // console.log('ev', ev)
     var y = ev.clientY;
     var x = ev.clientX;
+    console.log('clientY', y)
+    console.log('offsetY', ev.offsetY)
     // ctx.strokeRect(10, line - size, ctx.canvas.width - 20, size + 13)
     // ctx.strokeRect(x,y,w,h)
     var idx = getMouseMatchTxtIdx(x, y);
@@ -157,9 +164,13 @@ function handleKey(ev) {
 
     // updateLineAtCurrTxt();
 }
-function renderTextarea(idx) {
+function renderTextarea(idx, add = false) {
     var length = getTxtsLength();
-    if (idx === -1 || idx > length) return;
+    if (add) {
+        var textareaVal = document.querySelector('.add-line-container textarea').value;
+        console.log('idx', idx, 'textarea val', textareaVal);
+    }
+    if (idx === -1 || idx > length || textareaVal === '') return;
     var txt = getActiveTextareaLastTxt(idx); //
     var str = txt.str;
     var color = txt.color;
@@ -172,16 +183,16 @@ function renderTextarea(idx) {
     <button class="ctrl-btn btn ctrl-color">
     <input type="color" value="${color}" id="textarea-color${idx}" oninput="onUpdateTxtBy('color', ${idx}, this.value)">
     </button>
-    <button class="ctrl-btn btn ctrl-font-inc" onclick="onUpdateTxtBy('fontInc', ${idx})">+</button>
-    <button class="ctrl-btn btn ctrl-font-dec" onclick="onUpdateTxtBy('fontDec', ${idx})">-</button>
-    <button class="ctrl-btn btn ctrl-font" onclick="showFontMenu(${idx})">A</button>
-    <button class="ctrl-btn btn ctrl-down" onclick="onUpdateTxtBy('up', ${idx})">▲</button>
-    <button class="ctrl-btn btn ctrl-up" onclick="onUpdateTxtBy('down', ${idx})">▼</button>
+    <button class="ctrl-btn btn ctrl-font-inc fas fa-plus-square" onclick="onUpdateTxtBy('fontInc', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-font-dec fas fa-minus-square" onclick="onUpdateTxtBy('fontDec', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-font fas fa-font" onclick="showFontMenu(${idx})"></button>
+    <button class="ctrl-btn btn ctrl-up fas fa-chevron-circle-up" onclick="onUpdateTxtBy('up', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-down fas fa-chevron-circle-down" onclick="onUpdateTxtBy('down', ${idx})"></button>
     
-    <button class="ctrl-btn btn ctrl-bold ${bold}" onclick="onUpdateTxtBy('bold', ${idx})">B</button>
-    <button class="ctrl-btn btn ctrl-left" onclick="onUpdateTxtBy('left', ${idx})">L</button>
-    <button class="ctrl-btn btn ctrl-center" onclick="onUpdateTxtBy('center', ${idx})">C</button>
-    <button class="ctrl-btn btn ctrl-right" onclick="onUpdateTxtBy('right', ${idx})">R</button>
+    <button class="ctrl-btn btn ctrl-bold ${bold} fas fa-bold" onclick="onUpdateTxtBy('bold', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-left fas fa-align-left" onclick="onUpdateTxtBy('left', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-center fas fa-align-center" onclick="onUpdateTxtBy('center', ${idx})"></button>
+    <button class="ctrl-btn btn ctrl-right fas fa-align-right" onclick="onUpdateTxtBy('right', ${idx})"></button>
     </div>
     <ul class="clean-list font-pick-bar font-pick${idx} hide flex">
     <li class="pick-impact" onclick="onUpdateTxtBy('font', ${idx} ,'Impact')">Impact</li>
@@ -197,9 +208,9 @@ function renderTextarea(idx) {
 
     //assign status
     strHtml =
-        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1});">⯇</button>
+        `<button class="btn browse-btn" onclick="renderTextarea(${idx - 1});">Previous line</button>
     <span class="show-curr-line">${idx + 1}</span>
-    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1})">⯈</button>`;
+    <button class="btn browse-btn" onclick="renderTextarea(${idx + 1}, true)">Next line / <i class="fas fa-plus-circle"></i></button>`;
 
     var elBrowseTxtsContainer = document.querySelector('.browse-txts-container');
     elBrowseTxtsContainer.innerHTML = strHtml;
@@ -234,7 +245,6 @@ function submitDetails() {
     var linkStr = `https://mail.google.com/mail/?view=cm&fs=1&to=${MY_EMAIL}&su=${subject}&body=${message}`;
     window.open(linkStr);
 }
-
 function renderFrag(idx) {
     var elCanvas = document.querySelector('#meme-canvas');
     var ctx = elCanvas.getContext('2d');
@@ -242,4 +252,9 @@ function renderFrag(idx) {
     var line = txt.line;
     var size = txt.size;
     ctx.strokeRect(15, line - size, ctx.canvas.width - 25, size + 13)
+}
+function fbFeature(elFBBtn) {
+    setCanvas(getMemeTxts());
+    elFBBtn.classList.add('hide');
+    document.querySelector('.share-container').classList.remove('hide');
 }
